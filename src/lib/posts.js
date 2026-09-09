@@ -65,14 +65,26 @@ export function getAllPostIds() {
 
 export async function getPostData(slug) {
   const fileNames = fs.readdirSync(postsDirectory);
-  const decodedSlug = decodeURIComponent(slug);
+  
+  let decodedSlug = slug;
+  try {
+    decodedSlug = decodeURIComponent(slug);
+    if (decodedSlug !== decodeURIComponent(decodedSlug)) {
+      decodedSlug = decodeURIComponent(decodedSlug);
+    }
+  } catch (e) {
+    // Ignore decode errors
+  }
+  
+  console.log(`[DEBUG] getPostData slug: "${slug}" -> decoded: "${decodedSlug}"`);
   
   const matchedFileName = fileNames.find(fileName => {
     const rawSafeSlug = fileName.replace(/\.md$/, '').replace(/\[|\]/g, '-').replace(/\s+/g, '-').replace(/-+/g, '-');
-    return rawSafeSlug === decodedSlug || rawSafeSlug === slug;
+    return rawSafeSlug === decodedSlug || rawSafeSlug === slug || encodeURIComponent(rawSafeSlug) === slug;
   });
   
   if (!matchedFileName) {
+    console.error(`[DEBUG] Failed to match slug: "${slug}". Available raw slugs:`, fileNames.map(f => f.replace(/\.md$/, '').replace(/\[|\]/g, '-').replace(/\s+/g, '-').replace(/-+/g, '-')));
     throw new Error(`Post not found for slug: ${slug}`);
   }
   

@@ -5,7 +5,7 @@ import { format, parseISO } from 'date-fns'
 export async function generateStaticParams() {
   const paths = getAllPostIds()
   return paths.map((path) => ({
-    slug: path.params.slug,
+    slug: encodeURIComponent(path.params.slug),
   }))
 }
 
