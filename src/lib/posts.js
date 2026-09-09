@@ -8,7 +8,7 @@ const postsDirectory = path.join(process.cwd(), '_posts');
 
 function generateSafeSlug(fileName) {
   const rawSafeSlug = fileName.replace(/\.md$/, '').replace(/\[|\]/g, '-').replace(/\s+/g, '-').replace(/-+/g, '-');
-  return encodeURIComponent(rawSafeSlug);
+  return rawSafeSlug;
 }
 
 export function getSortedPostsData() {
@@ -69,7 +69,7 @@ export async function getPostData(slug) {
   
   const matchedFileName = fileNames.find(fileName => {
     const rawSafeSlug = fileName.replace(/\.md$/, '').replace(/\[|\]/g, '-').replace(/\s+/g, '-').replace(/-+/g, '-');
-    return rawSafeSlug === decodedSlug || encodeURIComponent(rawSafeSlug) === slug;
+    return rawSafeSlug === decodedSlug || rawSafeSlug === slug;
   });
   
   if (!matchedFileName) {
@@ -109,7 +109,7 @@ export function getAllTags() {
   
   return Array.from(tags).map(tag => ({
     params: {
-      tag: encodeURIComponent(tag)
+      tag: tag
     }
   }));
 }
