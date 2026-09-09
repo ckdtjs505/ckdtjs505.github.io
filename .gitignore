@@ -18,4 +18,5 @@ Gemfile.lock
 # Next.js
 .next
 out
+.env
 .env*.local
