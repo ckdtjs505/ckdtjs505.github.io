@@ -6,7 +6,7 @@ import { format, parseISO } from 'date-fns'
 export async function generateStaticParams() {
   const paths = getAllTags()
   return paths.map((path) => ({
-    tag: encodeURIComponent(path.params.tag),
+    tag: path.params.tag,
   }))
 }
 
