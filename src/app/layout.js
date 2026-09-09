@@ -1,6 +1,7 @@
 import './globals.css'
 import Script from 'next/script'
 import HighlightListener from './HighlightListener'
+import Link from 'next/link'
 
 export const metadata = {
   title: '소니아 개발 블로그',
@@ -20,7 +21,10 @@ export default function RootLayout({ children }) {
         <header>
           <div className="container header-content">
             <a href="/" className="logo">Sonia.dev</a>
-            <nav>
+            <nav style={{display: 'flex', gap: '1.5rem'}}>
+              <Link href="/about" style={{fontWeight: 500, color: 'var(--text-secondary)'}}>
+                About
+              </Link>
               <a href="https://github.com/ckdtjs505" target="_blank" rel="noopener noreferrer" style={{fontWeight: 500, color: 'var(--text-secondary)'}}>
                 GitHub
               </a>
