@@ -40,7 +40,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build with Next.js
-        run: npx next build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+          NEXT_PUBLIC_TINA_SEARCH_TOKEN: ${{ secrets.NEXT_PUBLIC_TINA_SEARCH_TOKEN }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
