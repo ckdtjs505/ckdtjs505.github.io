@@ -6,8 +6,6 @@ node_modules
 _site
 
 LICENSE
-package.json
-package-lock.json
 
 Gemfile
 Gemfile.lock
@@ -16,3 +14,8 @@ Gemfile.lock
 .prettierignore
 
 .jekyll-cache
+
+# Next.js
+.next
+out
+.env*.local
