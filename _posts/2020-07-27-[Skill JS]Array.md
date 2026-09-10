@@ -1,11 +1,12 @@
 ---
 layout: post
 title: '[JS] 코딩 기술 배열(Array)편'
-date: 2020-07-27
+date: 2020-07-27T00:00:00.000Z
 tags: javascript skill-Js
 comments: true
 share: true
 related: false
+summary: 자바스크립트 배열(Array)의 기초적인 다루는 방법과 유용한 내장 메서드들을 살펴봅니다.
 ---
 
 데이터 컬렉션은 어떻게 관리하는게 효율적일까?

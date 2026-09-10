@@ -1,12 +1,13 @@
 ---
 layout: post
 title: '[Development Tip #4] 매개변수의 기본값을 생성하라'
-date: 2020-07-22
+date: 2020-07-22T00:00:00.000Z
 author: changsun oh
-tags: Tip 
+tags: Tip
 comments: true
 share: true
 related: false
+summary: 실무에서 유용하게 쓰이는 프론트엔드 개발 노하우 네 번째 이야기입니다.
 ---
 
 ## 목표 

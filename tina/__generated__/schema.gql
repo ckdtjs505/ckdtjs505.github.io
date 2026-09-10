@@ -96,6 +96,7 @@ type Post implements Node & Document {
   comments: Boolean
   share: Boolean
   related: Boolean
+  summary: String
   body: JSON
   id: ID!
   _sys: SystemInfo!
@@ -137,6 +138,7 @@ input PostFilter {
   comments: BooleanFilter
   share: BooleanFilter
   related: BooleanFilter
+  summary: StringFilter
   body: RichTextFilter
 }
 
@@ -179,6 +181,7 @@ input PostMutation {
   comments: Boolean
   share: Boolean
   related: Boolean
+  summary: String
   body: JSON
 }
 

@@ -1,12 +1,13 @@
 ---
 layout: post
 title: '[Development Tip #5] 구조 분해 할당'
-date: 2020-07-22
+date: 2020-07-22T00:00:00.000Z
 author: changsun oh
-tags: Tip 
+tags: Tip
 comments: true
 share: true
 related: false
+summary: 코드를 더 깔끔하게 작성하는 프론트엔드 실전 팁 다섯 번째 이야기입니다.
 ---
 
 ## 목표 

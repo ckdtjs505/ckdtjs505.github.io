@@ -1,11 +1,12 @@
 ---
 layout: post
 title: '[JS] 코딩 기술 맵(map)편'
-date: 2020-08-01
+date: 2020-08-01T00:00:00.000Z
 tags: javascript skill-Js
 comments: true
 share: true
 related: false
+summary: ES6에서 추가된 Map 객체의 특징과 일반 Object와의 차이점을 분석합니다.
 ---
 
 ## 목표 

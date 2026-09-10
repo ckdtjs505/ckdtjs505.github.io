@@ -1,12 +1,13 @@
 ---
 layout: post
-title: "[Development Tip #7] 조건문을 깔끔하게 작성하기 "
-date: 2020-07-22
+title: '[Development Tip #7] 조건문을 깔끔하게 작성하기 '
+date: 2020-07-22T00:00:00.000Z
 author: changsun oh
 tags: Tip
 comments: true
 share: true
 related: false
+summary: 실전 프로젝트에 적용할 수 있는 유용한 프론트엔드 개발 팁 일곱 번째 이야기입니다.
 ---
 
 ## 목표

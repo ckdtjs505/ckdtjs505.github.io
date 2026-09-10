@@ -1,12 +1,13 @@
 ---
 layout: post
 title: '[Core JS] 실행컨텍스트란?'
-date: 2020-05-03
+date: 2020-05-03T00:00:00.000Z
 author: changsun oh
 tags: javascript CoreJS
 comments: true
 share: true
 related: false
+summary: 자바스크립트 코드가 실행되는 환경인 실행 컨텍스트(Execution Context)의 개념을 파헤쳐 봅니다.
 ---
 
 # jsCoreStudy

@@ -1,12 +1,13 @@
 ---
 layout: post
 title: '[Core JS] 콜백함수?'
-date: 2020-05-04
+date: 2020-05-04T00:00:00.000Z
 author: changsun oh
 tags: javascript CoreJS
 comments: true
 share: true
 related: false
+summary: 콜백 함수(Callback Function)의 개념과 제어권 위임에 대해 이해합니다.
 ---
 
 ## 콜백 함수

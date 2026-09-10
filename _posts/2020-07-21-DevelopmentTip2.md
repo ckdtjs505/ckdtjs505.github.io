@@ -1,11 +1,12 @@
 ---
 layout: post
 title: '[Development Tip #2] 기획의 의도를 파악하라 '
-date: 2020-07-21
+date: 2020-07-21T00:00:00.000Z
 tags: Tip
 comments: true
 share: true
 related: false
+summary: 개발 생산성을 높여주는 프론트엔드 실무 개발 팁 두 번째 이야기입니다.
 ---
 
 신입과 경력의 차이가 무엇일까? 물론 개발하는 속도나 능력부분이라고 생각하지만.

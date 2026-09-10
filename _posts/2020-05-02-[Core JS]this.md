@@ -1,12 +1,13 @@
 ---
 layout: post
 title: '[Core JS] this란?'
-date: 2020-05-02
+date: 2020-05-02T00:00:00.000Z
 author: changsun oh
 tags: javascript CoreJS
 comments: true
 share: true
 related: false
+summary: 자바스크립트에서 this가 실행 컨텍스트에 따라 어떻게 바인딩되는지 동작 원리를 알아봅니다.
 ---
 
 ## 목표 

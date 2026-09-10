@@ -1,11 +1,12 @@
 ---
 layout: post
 title: '[js] js-datepicker 사용하기'
-date: 2021-01-03
-tags: javascript  
+date: 2021-01-03T00:00:00.000Z
+tags: javascript
 comments: true
 share: true
 related: false
+summary: 자바스크립트 Datepicker 라이브러리 활용법과 날짜 선택 컴포넌트 구현 방법을 다룹니다.
 ---
 
 

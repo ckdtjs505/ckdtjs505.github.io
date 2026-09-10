@@ -1,12 +1,13 @@
 ---
 layout: post
 title: '[Core JS] 프로토타입이란?'
-date: 2020-06-21
+date: 2020-06-21T00:00:00.000Z
 author: changsun oh
 tags: javascript CoreJS
 comments: true
 share: true
 related: false
+summary: 자바스크립트 프로토타입(Prototype) 체인과 객체 지향 상속 모델의 핵심을 이해합니다.
 ---
 
 프로토타입!? 많이 생소한 단어다. 자바스크립트는 프로토타입 기반 언어라고들 하지만, 프로토 타입이 도대체 먼지 감을 잡기가 쉽지가 않다.

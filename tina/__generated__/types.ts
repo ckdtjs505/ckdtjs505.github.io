@@ -174,6 +174,7 @@ export type Post = Node & Document & {
   comments?: Maybe<Scalars['Boolean']['output']>;
   share?: Maybe<Scalars['Boolean']['output']>;
   related?: Maybe<Scalars['Boolean']['output']>;
+  summary?: Maybe<Scalars['String']['output']>;
   body?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
@@ -215,6 +216,7 @@ export type PostFilter = {
   comments?: InputMaybe<BooleanFilter>;
   share?: InputMaybe<BooleanFilter>;
   related?: InputMaybe<BooleanFilter>;
+  summary?: InputMaybe<StringFilter>;
   body?: InputMaybe<RichTextFilter>;
 };
 
@@ -305,6 +307,7 @@ export type PostMutation = {
   comments?: InputMaybe<Scalars['Boolean']['input']>;
   share?: InputMaybe<Scalars['Boolean']['input']>;
   related?: InputMaybe<Scalars['Boolean']['input']>;
+  summary?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
@@ -343,17 +346,18 @@ export type PostFilter = {
   comments?: BooleanFilter | null | undefined;
   share?: BooleanFilter | null | undefined;
   related?: BooleanFilter | null | undefined;
+  summary?: StringFilter | null | undefined;
   body?: RichTextFilter | null | undefined;
 };
 
-export type PostPartsFragment = { __typename: 'Post', layout: string | null, title: string, date: string, author: string | null, tags: string | null, comments: boolean | null, share: boolean | null, related: boolean | null, body: any };
+export type PostPartsFragment = { __typename: 'Post', layout: string | null, title: string, date: string, author: string | null, tags: string | null, comments: boolean | null, share: boolean | null, related: boolean | null, summary: string | null, body: any };
 
 export type PostQueryVariables = Exact<{
   relativePath: string;
 }>;
 
 
-export type PostQuery = { post: { __typename: 'Post', id: string, layout: string | null, title: string, date: string, author: string | null, tags: string | null, comments: boolean | null, share: boolean | null, related: boolean | null, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PostQuery = { post: { __typename: 'Post', id: string, layout: string | null, title: string, date: string, author: string | null, tags: string | null, comments: boolean | null, share: boolean | null, related: boolean | null, summary: string | null, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type PostConnectionQueryVariables = Exact<{
   before?: string | null | undefined;
@@ -365,7 +369,7 @@ export type PostConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PostConnectionQuery = { postConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'Post', id: string, layout: string | null, title: string, date: string, author: string | null, tags: string | null, comments: boolean | null, share: boolean | null, related: boolean | null, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PostConnectionQuery = { postConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'Post', id: string, layout: string | null, title: string, date: string, author: string | null, tags: string | null, comments: boolean | null, share: boolean | null, related: boolean | null, summary: string | null, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export const PostPartsFragmentDoc = gql`
     fragment PostParts on Post {
@@ -378,6 +382,7 @@ export const PostPartsFragmentDoc = gql`
   comments
   share
   related
+  summary
   body
 }
     `;

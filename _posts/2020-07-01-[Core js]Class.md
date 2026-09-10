@@ -1,12 +1,13 @@
 ---
 layout: post
 title: '[Core JS] 클래스란?'
-date: 2020-06-21
+date: 2020-06-21T00:00:00.000Z
 author: changsun oh
 tags: javascript CoreJS
 comments: true
 share: true
 related: false
+summary: ES6에 도입된 클래스(Class) 문법과 기존 프로토타입 기반 상속과의 차이를 알아봅니다.
 ---
 
 

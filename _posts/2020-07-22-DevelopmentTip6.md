@@ -1,12 +1,13 @@
 ---
 layout: post
 title: '[Development Tip #6] 나머지 매개변수로 여러개 인수를 전달'
-date: 2020-07-22
+date: 2020-07-22T00:00:00.000Z
 author: changsun oh
-tags: Tip 
+tags: Tip
 comments: true
 share: true
 related: false
+summary: 놓치기 쉬운 자바스크립트 실전 개발 팁 여섯 번째 이야기입니다.
 ---
 
 ## 목표 

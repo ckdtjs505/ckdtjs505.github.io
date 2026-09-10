@@ -31,11 +31,19 @@ export default defineConfig({
         ui: {
           filename: {
             // if disabled, the editor can not edit the filename
-            readonly: true,
+            readonly: false,
             // Example of using a custom slugify function
             slugify: (values) => {
-              // Return a string representing the slug
-              return `${values?.title?.toLowerCase().replace(/ /g, '-')}`
+              // Prefix with current date to match existing post formats
+              const date = new Date().toISOString().split("T")[0];
+              const title = values?.title || "new-post";
+              // Allow English, Numbers, and Korean characters. Replace spaces and special characters with hyphens.
+              const slug = title
+                .toLowerCase()
+                .replace(/[^a-zA-Z0-9가-힣]/g, "-")
+                .replace(/-+/g, "-")
+                .replace(/^-|-$/g, "");
+              return `${date}-${slug}`;
             },
           },
         },
@@ -82,6 +90,14 @@ export default defineConfig({
             type: "boolean",
             name: "related",
             label: "Related",
+          },
+          {
+            type: "string",
+            name: "summary",
+            label: "Summary",
+            ui: {
+              component: "textarea"
+            }
           },
           {
             type: "rich-text",

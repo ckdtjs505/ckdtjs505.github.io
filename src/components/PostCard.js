@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { format, parseISO } from 'date-fns'
 
-export default function PostCard({ id, date, title, tags }) {
+export default function PostCard({ id, date, title, tags, excerpt }) {
   const router = useRouter();
 
   const handleCardClick = () => {
@@ -20,6 +20,21 @@ export default function PostCard({ id, date, title, tags }) {
   return (
     <div className="post-card" onClick={handleCardClick} style={{ cursor: 'pointer' }}>
       <h2 className="post-title">{title}</h2>
+      {excerpt && (
+        <p 
+          className="post-excerpt" 
+          style={{ 
+            fontSize: '0.9rem', 
+            color: '#666', 
+            margin: '8px 0',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
+          }}
+        >
+          {excerpt}
+        </p>
+      )}
       <div className="post-date">
         {date ? format(typeof date === 'string' ? parseISO(date) : new Date(date), 'LLLL d, yyyy') : 'No Date'}
       </div>

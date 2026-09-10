@@ -29,9 +29,33 @@ export function getSortedPostsData() {
       // Use gray-matter to parse the post metadata section
       const matterResult = matter(fileContents);
 
+      // Generate a simple excerpt from the markdown content
+      const excerpt = matterResult.content
+        .replace(/#+\s/g, '') // headers
+        .replace(/\*\*|__/g, '') // bold
+        .replace(/\*|_/g, '') // italic
+        .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1') // links
+        .replace(/!\[([^\]]+)\]\([^\)]+\)/g, '') // images
+        .replace(/```[\s\S]*?```/g, '') // code blocks
+        .replace(/`[^`]+`/g, '') // inline code
+        .replace(/<[^>]+>/g, '') // html tags
+        .replace(/\n+/g, ' ') // newlines to spaces
+        .trim();
+      
+      let finalExcerpt = '';
+      if (matterResult.data.summary) {
+        finalExcerpt = matterResult.data.summary;
+      } else {
+        const maxLength = 150;
+        finalExcerpt = excerpt.length > maxLength 
+          ? excerpt.substring(0, maxLength) + '...' 
+          : excerpt;
+      }
+
       // Combine the data with the id
       return {
         id,
+        excerpt: finalExcerpt,
         ...matterResult.data,
       };
     });

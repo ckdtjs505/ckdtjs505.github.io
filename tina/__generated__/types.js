@@ -16,6 +16,7 @@ export const PostPartsFragmentDoc = gql`
   comments
   share
   related
+  summary
   body
 }
     `;

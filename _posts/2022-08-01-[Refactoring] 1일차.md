@@ -1,11 +1,12 @@
 ---
 layout: post
 title: '[Refactoring] 1일차'
-date: 2022-08-01
-tags: Refactoring  
+date: 2022-08-01T00:00:00.000Z
+tags: Refactoring
 comments: true
 share: true
 related: false
+summary: 마틴 파울러의 '리팩터링' 책 스터디 1일차 요약 내용과 배운 점.
 ---
 
 ### 목표

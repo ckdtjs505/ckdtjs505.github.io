@@ -27,10 +27,13 @@ var config_default = defineConfig({
         ui: {
           filename: {
             // if disabled, the editor can not edit the filename
-            readonly: true,
+            readonly: false,
             // Example of using a custom slugify function
             slugify: (values) => {
-              return `${values?.title?.toLowerCase().replace(/ /g, "-")}`;
+              const date = (/* @__PURE__ */ new Date()).toISOString().split("T")[0];
+              const title = values?.title || "new-post";
+              const slug = title.toLowerCase().replace(/[^a-zA-Z0-9가-힣]/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
+              return `${date}-${slug}`;
             }
           }
         },
@@ -77,6 +80,14 @@ var config_default = defineConfig({
             type: "boolean",
             name: "related",
             label: "Related"
+          },
+          {
+            type: "string",
+            name: "summary",
+            label: "Summary",
+            ui: {
+              component: "textarea"
+            }
           },
           {
             type: "rich-text",

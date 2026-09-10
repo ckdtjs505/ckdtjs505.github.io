@@ -8,5 +8,6 @@ fragment PostParts on Post {
   comments
   share
   related
+  summary
   body
 }

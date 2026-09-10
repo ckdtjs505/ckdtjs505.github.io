@@ -1,12 +1,13 @@
 ---
 layout: post
-title: "[Core JS] 클로저란?"
-date: 2020-05-06
+title: '[Core JS] 클로저란?'
+date: 2020-05-06T00:00:00.000Z
 author: changsun oh
 tags: javascript CoreJS
 comments: true
 share: true
 related: false
+summary: 자바스크립트의 핵심 개념인 클로저(Closure)의 원리와 실용적인 활용 방법을 다룹니다.
 ---
 
 ## 목표

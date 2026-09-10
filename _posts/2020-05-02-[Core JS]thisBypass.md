@@ -1,12 +1,13 @@
 ---
 layout: post
 title: '[Core JS] this 우회방법'
-date: 2020-05-02
+date: 2020-05-02T00:00:00.000Z
 author: changsun oh
 tags: javascript CoreJS
 comments: true
 share: true
 related: false
+summary: this 바인딩의 예외적인 상황들과 화살표 함수 등 우회하는 방법에 대해 알아봅니다.
 ---
 ## 목표 
 * this를 우회하는 3가지 방법을 이해한다. 

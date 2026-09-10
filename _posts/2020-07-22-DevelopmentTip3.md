@@ -1,12 +1,13 @@
 ---
 layout: post
 title: '[Development Tip #3] 적절한 메서드를 발견하라'
-date: 2020-07-22
+date: 2020-07-22T00:00:00.000Z
 author: changsun oh
 tags: Tip 미완
 comments: true
 share: true
 related: false
+summary: 알아두면 쓸모 있는 자바스크립트 실전 개발 팁 세 번째 이야기입니다.
 ---
 
 ## hasOwnProperty

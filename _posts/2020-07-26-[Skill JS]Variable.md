@@ -1,11 +1,12 @@
 ---
 layout: post
 title: '[JS] 코딩 기술 변수 선언편'
-date: 2020-07-26
+date: 2020-07-26T00:00:00.000Z
 tags: javascript skill-Js
 comments: true
 share: true
 related: false
+summary: '자바스크립트 변수 선언 방식(var, let, const)의 차이점과 호이스팅 현상을 정리합니다.'
 ---
 
 어떻게 하면 사이드 이펙트를 최소화 할 수 있을까? 

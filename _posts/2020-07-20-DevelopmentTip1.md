@@ -1,11 +1,12 @@
 ---
 layout: post
 title: '[Development Tip #1] 개발자로서의 목표를 가져라'
-date: 2020-07-20
+date: 2020-07-20T00:00:00.000Z
 tags: Tip
 comments: true
 share: true
 related: false
+summary: 효율적인 개발을 위한 유용한 프론트엔드 실전 개발 팁 첫 번째 이야기입니다.
 ---
 
 아프리카 TV에 취작하고 벌써 반년이 흘렀다. 취직한 것에 너무 기쁘고 감사한 하루하루를 보냈다. 

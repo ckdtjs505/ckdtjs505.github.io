@@ -1,11 +1,12 @@
 ---
 layout: post
 title: '[JS] 코딩 기술 객체(object)편'
-date: 2020-07-29
+date: 2020-07-29T00:00:00.000Z
 tags: javascript skill-Js
 comments: true
 share: true
 related: false
+summary: '자바스크립트 객체(Object)의 생성, 속성 접근, 순회 방법 등 객체 다루기의 기본을 익힙니다.'
 ---
 
 ## 목표 

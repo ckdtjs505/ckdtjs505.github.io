@@ -1,12 +1,13 @@
 ---
 layout: post
 title: '[Core JS] 데이터 타입이란?'
-date: 2020-05-01
+date: 2020-05-01T00:00:00.000Z
 author: changsun oh
 tags: javascript CoreJS
 comments: true
 share: true
 related: false
+summary: 자바스크립트 데이터 타입(기본형/참조형)의 종류와 메모리 할당 방식의 차이를 알아봅니다.
 ---
 
 자바스크립트 데이터 타입을 왜 알아야 할까? 데이터 타입을 몰라도 상관없지 않을까? 

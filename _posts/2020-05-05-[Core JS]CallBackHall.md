@@ -1,12 +1,13 @@
 ---
 layout: post
 title: '[Core JS] 콜백지옥?'
-date: 2020-05-05
+date: 2020-05-05T00:00:00.000Z
 author: changsun oh
 tags: javascript CoreJS
 comments: true
 share: true
 related: false
+summary: '콜백 지옥(Callback Hell)의 문제점과 이를 해결하기 위한 Promise, async/await 패턴을 알아봅니다.'
 ---
 
 앞서 콜백함수에 대해 알아보았다. 콜백함수를 간단하게 인자로 넘겨지는 함수로 배웠다.

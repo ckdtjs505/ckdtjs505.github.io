@@ -1,3 +1,6 @@
+---
+summary: 렉시컬 환경(Lexical Environment)과 스코프 체인의 동작 원리를 상세히 분석합니다.
+---
 
 ```javascript
 var name = 'global';
