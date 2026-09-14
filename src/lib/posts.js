@@ -78,12 +78,15 @@ export function getAllPostIds() {
 
   return fileNames
     .filter((fileName) => fileName.endsWith('.md'))
-    .map((fileName) => {
-      return {
-        params: {
-          slug: encodeURIComponent(generateSafeSlug(fileName)),
-        },
-      };
+    .flatMap((fileName) => {
+      const slug = generateSafeSlug(fileName);
+      const encodedSlug = encodeURIComponent(slug);
+      
+      const params = [{ params: { slug } }];
+      if (slug !== encodedSlug) {
+        params.push({ params: { slug: encodedSlug } });
+      }
+      return params;
     });
 }
 
@@ -143,11 +146,14 @@ export function getAllTags() {
     }
   });
   
-  return Array.from(tags).map(tag => ({
-    params: {
-      tag: encodeURIComponent(tag)
+  return Array.from(tags).flatMap(tag => {
+    const encodedTag = encodeURIComponent(tag);
+    const params = [{ params: { tag } }];
+    if (tag !== encodedTag) {
+      params.push({ params: { tag: encodedTag } });
     }
-  }));
+    return params;
+  });
 }
 
 export function getPostsByTag(tag) {
