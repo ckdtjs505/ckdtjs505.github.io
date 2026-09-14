@@ -1,8 +1,14 @@
 ---
+layout: post
 title: 'pnpm의 3계층 아키텍처와 링크 메커니즘 분석'
-date: 2026-09-09T23:21:40.707Z
-summary: pnpm이 Global Store, Virtual Store(.pnpm), 개별 앱 간에 디스크 공간을 절약하고 유령 의존성을 차단하는 3단계 계층 원리를 이해하고 구조화하기
+date: 2026-09-14T00:00:00.000Z
+tags: pnpm
+comments: true
+share: true
+related: false
+summary: 3단계로 디스크 공간을 절약하고 유령 의존성을 차단하는 pnpm의 아키텍처와 링크 메커니즘
 ---
+
 ## 목표
 pnpm이 **Global Store**, **Virtual Store(.pnpm)**, **개별 앱** 간에 디스크 공간을 절약하고 유령 의존성을 차단하는 3단계 계층 원리를 이해하고 구조화하기
 
