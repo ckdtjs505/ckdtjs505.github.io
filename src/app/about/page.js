@@ -5,9 +5,9 @@ export const metadata = {
 
 const fullStackProjects = [
   {
-    id: 'nwitter',
-    title: '🎃 nwitter',
-    description: '트위터 클론 코딩 프로젝트입니다.',
+    id: 'hamonseong',
+    title: '📖 hamonseong',
+    description: '사랑과은헤교회 청소년부 성경읽기 프로젝트입니다.',
     githubLink: 'https://github.com/ckdtjs505/hamonseong',
     viewLink: 'https://hamonseong.com/'
   },
