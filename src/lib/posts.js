@@ -81,7 +81,7 @@ export function getAllPostIds() {
     .map((fileName) => {
       return {
         params: {
-          slug: generateSafeSlug(fileName),
+          slug: encodeURIComponent(generateSafeSlug(fileName)),
         },
       };
     });
@@ -145,7 +145,7 @@ export function getAllTags() {
   
   return Array.from(tags).map(tag => ({
     params: {
-      tag: tag
+      tag: encodeURIComponent(tag)
     }
   }));
 }
