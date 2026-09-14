@@ -5,18 +5,11 @@ export const metadata = {
 
 const fullStackProjects = [
   {
-    id: 'afreecatv',
-    title: '📺 afreecaTV',
-    description: '아프리카TV 클론 코딩 프로젝트입니다.',
-    githubLink: 'https://github.com/ckdtjs505/csfreecaTV',
-    viewLink: 'https://intense-sands-29573.herokuapp.com/'
-  },
-  {
-    id: 'guess-mind',
-    title: '✏ guess-mind',
-    description: '캐치마인드 클론 코딩 프로젝트입니다.',
-    githubLink: 'https://github.com/ckdtjs505/guess-mind',
-    viewLink: 'https://intense-ravine-34956.herokuapp.com/'
+    id: 'nwitter',
+    title: '🎃 nwitter',
+    description: '트위터 클론 코딩 프로젝트입니다.',
+    githubLink: 'https://github.com/ckdtjs505/hamonseong',
+    viewLink: 'https://hamonseong.com/'
   },
   {
     id: 'nwitter',
@@ -24,6 +17,20 @@ const fullStackProjects = [
     description: '트위터 클론 코딩 프로젝트입니다.',
     githubLink: 'https://github.com/ckdtjs505/nwitter',
     viewLink: 'https://ckdtjs505.github.io/nwitter/#/'
+  },
+  {
+    id: 'afreecatv',
+    title: '📺 afreecaTV',
+    description: '아프리카TV 클론 코딩 프로젝트입니다.',
+    githubLink: 'https://github.com/ckdtjs505/csfreecaTV',
+    viewLink: 'https://csfreecatv.onrender.com/'
+  },
+  {
+    id: 'guess-mind',
+    title: '✏ guess-mind',
+    description: '캐치마인드 클론 코딩 프로젝트입니다.',
+    githubLink: 'https://github.com/ckdtjs505/guess-mind',
+    viewLink: 'https://intense-ravine-34956.herokuapp.com/'
   }
 ];
 
@@ -113,14 +120,14 @@ const frontEndProjects = [
 export default function About() {
   return (
     <section>
-      <div className="profile-section" style={{marginBottom: '4rem'}}>
+      <div className="profile-section" style={{ marginBottom: '4rem' }}>
         <img src="/assets/img/avatar.jpg" alt="Sonia의 프로필 이미지" className="profile-img" />
         <div className="profile-info">
           <h2>안녕하세요, 개발자 오창선입니다!</h2>
-          <p style={{fontSize: '1.1rem', lineHeight: '1.6'}}>
+          <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
             저는 웹 프론트엔드 개발에 관한 지식과 경험을 기록하고 공유합니다. 모던 Javascript, Node.js 등을 활용하여 다양한 오픈소스 프로젝트를 만들어가는 것을 좋아합니다.
           </p>
-          <a href="mailto:your.email@example.com" className="btn-primary" style={{marginTop: '1rem', display: 'inline-block'}}>
+          <a href="mailto:your.email@example.com" className="btn-primary" style={{ marginTop: '1rem', display: 'inline-block' }}>
             이메일 보내기
           </a>
         </div>
@@ -129,21 +136,21 @@ export default function About() {
       <div className="portfolio-section">
         {mobileAppProjects.length > 0 && (
           <>
-            <h2 style={{marginBottom: '1.5rem', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border)'}}>모바일 앱 프로젝트</h2>
+            <h2 style={{ marginBottom: '1.5rem', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border)' }}>Mobile App Project</h2>
             <div className="project-grid">
               {mobileAppProjects.map(project => (
-                 <div className="post-card" key={project.id}>
-                   <h3 className="post-title" style={{marginBottom: '0.5rem'}}>{project.title}</h3>
-                   <p style={{color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.95rem'}}>{project.description}</p>
-                   <div style={{display: 'flex', gap: '0.5rem'}}>
-                     {project.githubLink && (
-                       <a href={project.githubLink} target="_blank" rel="noreferrer" className="tag" style={{textDecoration: 'none'}}>GitHub</a>
-                     )}
-                     {project.viewLink && (
-                       <a href={project.viewLink} target="_blank" rel="noreferrer" className="tag" style={{textDecoration: 'none'}}>View</a>
-                     )}
-                   </div>
-                 </div>
+                <div className="post-card" key={project.id}>
+                  <h3 className="post-title" style={{ marginBottom: '0.5rem' }}>{project.title}</h3>
+                  <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.95rem' }}>{project.description}</p>
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    {project.githubLink && (
+                      <a href={project.githubLink} target="_blank" rel="noreferrer" className="tag" style={{ textDecoration: 'none' }}>GitHub</a>
+                    )}
+                    {project.viewLink && (
+                      <a href={project.viewLink} target="_blank" rel="noreferrer" className="tag" style={{ textDecoration: 'none' }}>View</a>
+                    )}
+                  </div>
+                </div>
               ))}
             </div>
           </>
@@ -151,37 +158,37 @@ export default function About() {
 
         {fullStackProjects.length > 0 && (
           <>
-            <h2 style={{marginBottom: '1.5rem', marginTop: mobileAppProjects.length > 0 ? '3rem' : '0', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border)'}}>풀스택 프로젝트</h2>
+            <h2 style={{ marginBottom: '1.5rem', marginTop: mobileAppProjects.length > 0 ? '3rem' : '0', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border)' }}>Full Stack Project</h2>
             <div className="project-grid">
               {fullStackProjects.map(project => (
-                 <div className="post-card" key={project.id}>
-                   <h3 className="post-title" style={{marginBottom: '0.5rem'}}>{project.title}</h3>
-                   <p style={{color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.95rem'}}>{project.description}</p>
-                   <div style={{display: 'flex', gap: '0.5rem'}}>
-                     <a href={project.githubLink} target="_blank" rel="noreferrer" className="tag" style={{textDecoration: 'none'}}>GitHub</a>
-                     <a href={project.viewLink} target="_blank" rel="noreferrer" className="tag" style={{textDecoration: 'none'}}>View</a>
-                   </div>
-                 </div>
+                <div className="post-card" key={project.id}>
+                  <h3 className="post-title" style={{ marginBottom: '0.5rem' }}>{project.title}</h3>
+                  <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.95rem' }}>{project.description}</p>
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <a href={project.githubLink} target="_blank" rel="noreferrer" className="tag" style={{ textDecoration: 'none' }}>GitHub</a>
+                    <a href={project.viewLink} target="_blank" rel="noreferrer" className="tag" style={{ textDecoration: 'none' }}>View</a>
+                  </div>
+                </div>
               ))}
             </div>
           </>
         )}
 
-        <h2 style={{marginBottom: '1.5rem', marginTop: (mobileAppProjects.length > 0 || fullStackProjects.length > 0) ? '3rem' : '0', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border)'}}>프론트엔드 프로젝트</h2>
+        <h2 style={{ marginBottom: '1.5rem', marginTop: (mobileAppProjects.length > 0 || fullStackProjects.length > 0) ? '3rem' : '0', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border)' }}>Frontend Project</h2>
         <div className="project-grid">
           {frontEndProjects.map(project => (
-             <div className="post-card" key={project.id}>
-               <h3 className="post-title" style={{marginBottom: '0.5rem'}}>{project.title}</h3>
-               <p style={{color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.95rem'}}>{project.description}</p>
-               <div style={{display: 'flex', gap: '0.5rem'}}>
-                 {project.githubLink && (
-                   <a href={project.githubLink} target="_blank" rel="noreferrer" className="tag" style={{textDecoration: 'none'}}>GitHub</a>
-                 )}
-                 {project.viewLink && (
-                   <a href={project.viewLink} target="_blank" rel="noreferrer" className="tag" style={{textDecoration: 'none'}}>View</a>
-                 )}
-               </div>
-             </div>
+            <div className="post-card" key={project.id}>
+              <h3 className="post-title" style={{ marginBottom: '0.5rem' }}>{project.title}</h3>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.95rem' }}>{project.description}</p>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                {project.githubLink && (
+                  <a href={project.githubLink} target="_blank" rel="noreferrer" className="tag" style={{ textDecoration: 'none' }}>GitHub</a>
+                )}
+                {project.viewLink && (
+                  <a href={project.viewLink} target="_blank" rel="noreferrer" className="tag" style={{ textDecoration: 'none' }}>View</a>
+                )}
+              </div>
+            </div>
           ))}
         </div>
       </div>
