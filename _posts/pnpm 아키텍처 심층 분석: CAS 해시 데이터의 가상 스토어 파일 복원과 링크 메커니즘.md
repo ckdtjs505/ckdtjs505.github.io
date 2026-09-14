@@ -1,12 +1,12 @@
 ---
 layout: post
-title: 'pnpm 아키텍처 심층 분석: CAS 해시 데이터의 가상 스토어 파일 복원과 링크 메커니즘'
+title: '[pnpm] 아키텍처 심층 분석 - CAS 해시 데이터의 가상 스토어 파일 복원과 링크 메커니즘'
 date: 2026-09-14T00:00:00.000Z
 tags: pnpm
 comments: true
 share: true
 related: false
-summary: pnpm의 아키텍처 심층 분석: CAS 해시 데이터의 가상 스토어 파일 복원과 링크 메커니즘
+summary: pnpm의 아키텍처 심층 분석 CAS 해시 데이터의 가상 스토어 파일 복원과 링크 메커니즘
 ---
 
 ## 목표
