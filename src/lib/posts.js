@@ -123,9 +123,53 @@ export async function getPostData(slug) {
 
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()
-    .use(html)
+    .use(html, { sanitize: false })
     .process(matterResult.content);
-  const contentHtml = processedContent.toString();
+  let contentHtml = processedContent.toString();
+
+  // remark-html은 코드블록 내용을 HTML 이스케이프함 (& → &amp;, > → &gt; 등)
+  // Mermaid가 이를 파싱하면 Syntax error 발생하므로, 서버에서 직접 디코딩 후 data-source 속성에 저장
+  contentHtml = contentHtml.replace(
+    /<pre><code class="language-mermaid">([\s\S]*?)<\/code><\/pre>/g,
+    (match, encodedContent) => {
+      // 1단계: HTML 엔티티 디코딩
+      let decodedContent = encodedContent
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .trim();
+
+      // 2단계: Mermaid v11은 특수문자(&, (, ), /, :)가 있는 label을 큰따옴표로 감싸야 파싱 가능
+      // node label [텍스트] 처리
+      decodedContent = decodedContent.replace(
+        /\[([^\]"]+)\]/g,
+        (m, label) => {
+          if (/[&()/:.]/.test(label)) {
+            // Mermaid v11에서 따옴표 내부의 & 는 &amp; 로 써야 정상 렌더링
+            const safeLabel = label.replace(/&/g, '&amp;').replace(/"/g, '\\"');
+            return `["${safeLabel}"]`;
+          }
+          return m;
+        }
+      );
+
+      // edge label |텍스트| 처리
+      decodedContent = decodedContent.replace(
+        /\|([^|"]+)\|/g,
+        (m, label) => {
+          if (/[&()/:.]/.test(label)) {
+            const safeLabel = label.replace(/&/g, '&amp;').replace(/"/g, '\\"');
+            return `|"${safeLabel}"|`;
+          }
+          return m;
+        }
+      );
+
+      return `<div class="mermaid-block" data-source="${encodeURIComponent(decodedContent)}"></div>`;
+    }
+  );
 
   // Combine the data with the id and contentHtml
   return {

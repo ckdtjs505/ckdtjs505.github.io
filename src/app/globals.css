@@ -284,3 +284,19 @@ main {
   color: var(--accent-hover);
   text-decoration: underline;
 }
+
+/* Mermaid 다이어그램 */
+.mermaid-container {
+  background: rgba(22, 27, 34, 0.8);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.mermaid-container svg {
+  max-width: 100%;
+  height: auto;
+}

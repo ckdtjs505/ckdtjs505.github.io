@@ -1,6 +1,7 @@
 import './globals.css'
 import Script from 'next/script'
 import HighlightListener from './HighlightListener'
+import MermaidListener from './MermaidListener'
 import Link from 'next/link'
 
 export const metadata = {
@@ -17,7 +18,9 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" strategy="afterInteractive" />
+        <Script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js" strategy="afterInteractive" />
         <HighlightListener />
+        <MermaidListener />
         <header>
           <div className="container header-content">
             <a href="/" className="logo">Sonia.dev</a>
