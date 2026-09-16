@@ -47,7 +47,7 @@ summary: 바둑계 선례를 통해 본 AI 시대 인간의 3가지 계층과, G
 * 도서: 『먼저 온 미래』
 * 툴: Google Gemini (Gems), Markdown 기반 노트 시스템
 * 예시 코드: 지식을 3단계로 구조화하고 암기용 요약 카드를 강제 출력하는 GEM 시스템 프롬프트 예시
-  ```markdown
+```markdown
   # Role: 지식 구조화 및 암기 트레이너 GEM
   
   ## Instruction:
@@ -73,7 +73,7 @@ flowchart TD
         AI -. 배척 .- Human_Rejected
     end
 
-    subgraph Workflow ["행동 가이드 & 실행 파이프라인"]
+    subgraph Workflow ["행동 가이드, 실행 파이프라인"]
         Step1["배움: AI 피드백 수용"]
         Step2["구조화: GEM 프롬프트로 일관된 템플릿화"]
         Step3["체화: 구조화된 지식 암기 및 내재화"]
