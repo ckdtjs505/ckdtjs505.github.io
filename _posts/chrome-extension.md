@@ -1,21 +1,26 @@
 ---
-title: 'Chrome '
+layout: post
+title: 'Chrome 확장 프로그램: VOD 데이터 패킷 대량 주입 파이프라인 분석'
 date: 2026-09-09T23:21:40.707Z
+tags: [Chrome Extension, Web Worker]
+comments: true
+share: true
+related: false
 summary: 크롬 브라우저 확장 프로그램 개발 과정과 내부 아키텍처에 대한 정리입니다.
 ---
 
-# SOOP VOD 10,000개 채팅 패킷 대량 주입 파이프라인 분석
+# VOD 10,000개 데이터 패킷 대량 주입 파이프라인 분석
 
 ## 목표
 
-* Chrome 확장 프로그램의 5단계 레이어 통신 구조를 파악하고, Web Worker와 타임 오프셋 치환 방식을 활용해 SOOP VOD 플레이어 내부 큐에 10,000개의 가상 채팅 패킷을 효율적으로 주입하는 흐름을 정립합니다.
+* Chrome 확장 프로그램의 5단계 레이어 통신 구조를 파악하고, Web Worker와 타임 오프셋 치환 방식을 활용해 VOD 플레이어 내부 큐에 10,000개의 가상 데이터 패킷을 효율적으로 주입하는 흐름을 정립합니다.
 
 ## 기억하기
 
 * **VOD vs LIVE 모드 파라미터 차이:** VOD 모드에서 `rate`는 초당 전송률이 아니라 **총 생성 패킷 수**를 의미합니다.
 * **단일 벌크 전송 (Bulk Transfer):** 1초마다 tick 단위로 패킷을 발행하는 LIVE 모드와 달리, START 시점에 Web Worker에서 10,000개 패킷 전체를 단일 `<root>` XML 문자열로 일괄 생성해 단 1회의 `postMessage`로 전달합니다.
 * **타임 오프셋 플레이스홀더 패턴:** 생성 시점에는 `__VOD_TIME_OFFSET_{s}__` 형태로 상대 시간(초)을 마킹하고, 최종 주입 계층(`page.js`)에서 실제 `videoEl.currentTime + 2초`를 기준으로 절대 타임스탬프로 일괄 치환합니다.
-* **5단계 격리 컨텍스트 통신:** `Popup UI (popup.js)` → `Content Script (content.js)` → `Web Worker (worker.js)` → `Content Script (content.js)` → `Page Script (page.js)` → `SOOP VOD Player` 순으로 데이터를 중계합니다.
+* **5단계 격리 컨텍스트 통신:** `Popup UI (popup.js)` → `Content Script (content.js)` → `Web Worker (worker.js)` → `Content Script (content.js)` → `Page Script (page.js)` → `VOD Player` 순으로 데이터를 중계합니다.
 
 ## 내용
 
@@ -31,16 +36,16 @@ summary: 크롬 브라우저 확장 프로그램 개발 과정과 내부 아키�
 [worker.js] ── vodpackets.js 10,000회 호출 ──▶ bigXml (<root>..10000개..</root>)
    │ self.postMessage({ type: 'VOD_BULK', xmlString: bigXml })
    ▼
-[content.js] → window.postMessage('SOOP_CHAT_TESTER_VOD_PACKET')
+[content.js] → window.postMessage('VOD_TESTER_PACKET')
    │
    ▼
 [page.js] ── DOMParser로 XML 파싱
            ── __VOD_TIME_OFFSET_N__ → 실제 재생시간 + N으로 치환
-           ── chatItem.createChatData() × 10,000
-           ── chatItem.chats.push() × 10,000
+           ── dataItem.createData() × 10,000
+           ── dataItem.queue.push() × 10,000
    │
    ▼
-[SOOP VOD 플레이어] 재생 시간 도달 시 채팅 자동 렌더링
+[VOD 플레이어] 재생 시간 도달 시 데이터 자동 렌더링
 
 ```
 
@@ -74,7 +79,7 @@ case 'START': {
     for (let i = 0; i < totalPackets; i++) {
       // 0~59초 구간에 균등 분배 (i=0 → 0초, i=9999 → ~59초)
       const s = Math.floor((i / totalPackets) * durationSec);
-      const k = pickKey();           // 가중치 추첨 (채팅 95%)
+      const k = pickKey();           // 가중치 추첨 (데이터 95%)
       let xml = entry.fn().xmlString; // vodpackets.js 에서 XML 생성
       xml = xml.replace('__VOD_TIME__', `__VOD_TIME_OFFSET_${s}__`);
       bigXml += xml;
@@ -96,8 +101,8 @@ case 'START': {
 // vodpackets.js
 export function vodChat() {
   return {
-    tagName: 'chat',
-    xmlString: '<chat><p>0</p><n><![CDATA[베르쑤]]></n><u>tester1</u><m><![CDATA[안녕하세요~]]></m><t>__VOD_TIME__</t></chat>',
+    tagName: 'data',
+    xmlString: '<data><p>0</p><n><![CDATA[User1]]></n><u>tester1</u><m><![CDATA[Test Message]]></m><t>__VOD_TIME__</t></data>',
   };
 }
 
@@ -109,7 +114,7 @@ Worker로부터 수신한 대량 XML 데이터를 메인 웹 페이지 스크립
 
 ```javascript
 // content.js
-window.postMessage({ type: 'SOOP_CHAT_TESTER_VOD_PACKET', xmlString: bigXml }, '*');
+window.postMessage({ type: 'VOD_TESTER_PACKET', xmlString: bigXml }, '*');
 
 ```
 
@@ -133,21 +138,56 @@ replacedXmlString = d.xmlString.replace(
 const xmlDoc = vodParser.parseFromString(replacedXmlString, 'text/xml');
 const children = Array.from(xmlDoc.documentElement.children); // 10,000개 노드
 for (const child of children) {
-  const chatData = chatItem.createChatData(child); // SOOP 내부 파싱 함수
-  if (chatData) chatItem.chats.push(chatData);     // 플레이어 내부 채팅 큐에 삽입
+  const parsedData = dataItem.createData(child); // 내부 파싱 함수
+  if (parsedData) dataItem.queue.push(parsedData);     // 플레이어 내부 데이터 큐에 삽입
 }
 
 ```
 
 ### 모드별 아키텍처 비교
 
-| 구분             | LIVE 모드                      | VOD 모드                                 |
-| -------------- | ---------------------------- | -------------------------------------- |
-| **패킷 생성 시점**   | 1초마다 주기적 tick 발생             | START 시점 1회 일괄(Bulk) 생성                |
-| **`rate`의 의미** | 초당 전송 패킷 수                   | 총 주입 패킷 수 (예: 10,000개)                 |
-| **주입 방식**      | `ctrl.receive()` (소켓 실시간 소비) | `chatItem.chats.push()` (플레이어 큐 사전 적재) |
-| **시간 처리**      | 별도 타임스탬프 계산 불필요              | 현재 재생 시간 + 상대 오프셋 치환                   |
-| **tick 루프 역할** | 패킷 생성 및 지속 전송                | UI 메트릭 측정 상태 유지만 수행                    |
+<style>
+  .custom-table { border-collapse: collapse; width: 100%; margin-bottom: 20px; font-size: 0.95em; }
+  .custom-table th, .custom-table td { border: 1px solid #d0d7de; padding: 12px 15px; }
+  .custom-table th { background: linear-gradient(135deg, #4e54c8, #8f94fb); color: #fff; font-weight: 600; text-align: center; border-bottom: 2px solid #d0d7de; }
+  .custom-table td { text-align: left; }
+</style>
+<table class="custom-table">
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>LIVE 모드</th>
+      <th>VOD 모드</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>패킷 생성 시점</strong></td>
+      <td>1초마다 주기적 tick 발생</td>
+      <td>START 시점 1회 일괄(Bulk) 생성</td>
+    </tr>
+    <tr>
+      <td><strong>rate의 의미</strong></td>
+      <td>초당 전송 패킷 수</td>
+      <td>총 주입 패킷 수 (예: 10,000개)</td>
+    </tr>
+    <tr>
+      <td><strong>주입 방식</strong></td>
+      <td><code>ctrl.receive()</code> (소켓 실시간 소비)</td>
+      <td><code>dataItem.queue.push()</code> (플레이어 큐 사전 적재)</td>
+    </tr>
+    <tr>
+      <td><strong>시간 처리</strong></td>
+      <td>별도 타임스탬프 계산 불필요</td>
+      <td>현재 재생 시간 + 상대 오프셋 치환</td>
+    </tr>
+    <tr>
+      <td><strong>tick 루프 역할</strong></td>
+      <td>패킷 생성 및 지속 전송</td>
+      <td>UI 메트릭 측정 상태 유지만 수행</td>
+    </tr>
+  </tbody>
+</table>
 
 ## 느낀점
 
@@ -158,16 +198,9 @@ for (const child of children) {
 
 * 10,000개 노드를 `DOMParser`로 일괄 파싱하고 순회할 때 메인 스레드 프레임 드랍(Long Task) 발생 여부 프로파일링.
 * 한 번에 10,000개를 밀어 넣는 방식 대신 `requestAnimationFrame` 또는 청크 단위(예: 1,000개씩 분할) 큐 삽입 적용 검토.
-* 사용자가 VOD 재생바를 탐색(Seek)하거나 되감기/빨리감기를 했을 때 기존 주입된 가상 채팅 큐 데이터의 지속/초기화 동작 검증.
+* 사용자가 VOD 재생바를 탐색(Seek)하거나 되감기/빨리감기를 했을 때 기존 주입된 가상 데이터 큐의 지속/초기화 동작 검증.
 
 ## 결론
 
 * VOD 환경의 대량 부하 테스트는 실시간 소켓 주입 방식이 아닌 **사전 일괄 생성 후 플레이어 내부 타임라인 큐 적재 방식**을 취합니다.
-* 5단계 레이어를 거치며 연산 부하(Worker), 브릿지 중계(Content Script), 도메인 로직 주입(`page.js`)의 책임을 명확히 분리하여 브라우저 부담을 최소화하면서 대규모 VOD 채팅 렌더링을 구현할 수 있습니다.
-
-## 참고
-
-* `popup.js`: L434-442 (UI 이벤트 핸들러 및 파라미터 전달)
-* `worker.js`: L157-184 (벌크 XML 생성 및 타임 오프셋 분배 로직)
-* `vodpackets.js`: 개별 채팅 XML 템플릿 정의 모듈
-* `page.js`: L104-160 (타임 치환, `DOMParser` 연동 및 `chatItem.chats` 주입)
+* 5단계 레이어를 거치며 연산 부하(Worker), 브릿지 중계(Content Script), 도메인 로직 주입(`page.js`)의 책임을 명확히 분리하여 브라우저 부담을 최소화하면서 대규모 VOD 데이터 렌더링을 구현할 수 있습니다.
