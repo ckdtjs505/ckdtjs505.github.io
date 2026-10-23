@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "웹 캠페인 토큰 재사용(Replay Attack) 및 클라이언트 변조 취약점 개선"
+featured: true
 date: 2026-09-29
 tags: ["Security", "WebSecurity", "Backend", "ReplayAttack", "Tampering"]
 comments: true

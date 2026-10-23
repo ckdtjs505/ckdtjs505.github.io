@@ -5,6 +5,7 @@ import TableOfContents from '../../../components/TableOfContents'
 import SeriesNav from '../../../components/SeriesNav'
 import PostNav from '../../../components/PostNav'
 import Comments from '../../../components/Comments'
+import OutdatedNotice from '../../../components/OutdatedNotice'
 
 export async function generateStaticParams() {
   const paths = getAllPostIds()
@@ -29,8 +30,10 @@ export async function generateMetadata({ params }) {
       description: postData.summary,
       url,
       publishedTime,
+      images: [{ url: `/og/${encodeURIComponent(postData.id)}.png`, width: 1200, height: 630 }],
       tags: typeof postData.tags === 'string' ? postData.tags.split(' ') : postData.tags,
     },
+    twitter: { card: 'summary_large_image' },
   }
 }
 
@@ -63,6 +66,7 @@ export default async function Post({ params }) {
           </div>
         )}
       </div>
+      <OutdatedNotice date={postData.date} />
       <SeriesNav series={postData.series} posts={seriesPosts} currentId={postData.id} />
       <TableOfContents toc={postData.toc} />
       <div

@@ -3,6 +3,9 @@
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
+const MERMAID_SRC = 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js'
+const MERMAID_SCRIPT_ID = 'mermaid-script'
+
 export default function MermaidListener() {
   const pathname = usePathname()
 
@@ -41,18 +44,24 @@ export default function MermaidListener() {
       }
     }
 
+    // 다이어그램이 있는 페이지에서만 mermaid(수 MB)를 내려받음
+    if (!document.querySelector('.mermaid-block[data-source]')) return
+
     if (window.mermaid) {
       applyMermaid()
-    } else {
-      const interval = setInterval(() => {
-        if (window.mermaid) {
-          applyMermaid()
-          clearInterval(interval)
-        }
-      }, 100)
-
-      setTimeout(() => clearInterval(interval), 10000)
+      return
     }
+
+    let script = document.getElementById(MERMAID_SCRIPT_ID)
+    if (!script) {
+      script = document.createElement('script')
+      script.id = MERMAID_SCRIPT_ID
+      script.src = MERMAID_SRC
+      script.async = true
+      document.body.appendChild(script)
+    }
+    script.addEventListener('load', applyMermaid, { once: true })
+    return () => script.removeEventListener('load', applyMermaid)
   }, [pathname])
 
   return null

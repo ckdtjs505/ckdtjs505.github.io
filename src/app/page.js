@@ -3,6 +3,7 @@ import { getSortedPostsData } from '../lib/posts'
 
 export default function Home() {
   const allPostsData = getSortedPostsData()
+  const featuredPosts = allPostsData.filter((post) => post.featured)
 
   return (
     <section>
@@ -17,6 +18,18 @@ export default function Home() {
         </div>
       </div>
 
+      {featuredPosts.length > 0 && (
+        <>
+          <h2 className="section-title">대표 글</h2>
+          <div className="post-list featured-list">
+            {featuredPosts.map((post) => (
+              <PostCard key={post.id} {...post} />
+            ))}
+          </div>
+        </>
+      )}
+
+      <h2 className="section-title">전체 글</h2>
       <div className="post-list">
         {allPostsData.map((post) => (
           <PostCard key={post.id} {...post} />

@@ -1,5 +1,4 @@
 import './globals.css'
-import Script from 'next/script'
 import MermaidListener from './MermaidListener'
 import Link from 'next/link'
 import { SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION } from '../lib/site'
@@ -31,7 +30,6 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
       </head>
       <body>
-        <Script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js" strategy="afterInteractive" />
         <MermaidListener />
         <header>
           <div className="container header-content">
