@@ -1,7 +1,11 @@
-import { getPostData, getAllPostIds } from '../../../lib/posts'
+import { getPostData, getAllPostIds, getAdjacentPosts, getSeriesPosts } from '../../../lib/posts'
 import Link from 'next/link'
 import { format, parseISO } from 'date-fns'
 import { SITE_NAME, toDate, postUrl } from '../../../lib/site'
+import TableOfContents from '../../../components/TableOfContents'
+import SeriesNav from '../../../components/SeriesNav'
+import PostNav from '../../../components/PostNav'
+import Comments from '../../../components/Comments'
 
 export async function generateStaticParams() {
   const paths = getAllPostIds()
@@ -33,6 +37,8 @@ export async function generateMetadata({ params }) {
 
 export default async function Post({ params }) {
   const postData = await getPostData(params.slug)
+  const { previous, next } = getAdjacentPosts(postData.id)
+  const seriesPosts = getSeriesPosts(postData.series)
 
   return (
     <article>
@@ -43,6 +49,7 @@ export default async function Post({ params }) {
         <h1>{postData.title}</h1>
         <div className="post-date">
           {postData.date ? format(typeof postData.date === 'string' ? parseISO(postData.date) : new Date(postData.date), 'LLLL d, yyyy') : ''}
+          {' · '}{postData.readingMinutes}분 읽기
         </div>
         {postData.tags && (
           <div className="post-tags">
@@ -57,10 +64,14 @@ export default async function Post({ params }) {
           </div>
         )}
       </div>
-      <div 
+      <SeriesNav series={postData.series} posts={seriesPosts} currentId={postData.id} />
+      <TableOfContents toc={postData.toc} />
+      <div
         className="post-content"
-        dangerouslySetInnerHTML={{ __html: postData.contentHtml }} 
+        dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
       />
+      <PostNav previous={previous} next={next} />
+      <Comments />
     </article>
   )
 }

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: '[Core JS] 클로저란?'
+series: 'Core JS'
 date: 2020-05-06T00:00:00.000Z
 author: changsun oh
 tags: javascript CoreJS

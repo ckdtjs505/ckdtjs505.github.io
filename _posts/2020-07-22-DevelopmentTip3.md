@@ -1,6 +1,7 @@
 ---
 layout: post
 title: '[Development Tip #3] 적절한 메서드를 발견하라'
+series: 'Development Tip'
 date: 2020-07-22T00:00:00.000Z
 author: changsun oh
 tags: Tip 미완

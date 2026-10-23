@@ -1,6 +1,7 @@
 ---
 layout: post
 title: '[Core JS] 프로토타입이란?'
+series: 'Core JS'
 date: 2020-06-21T00:00:00.000Z
 author: changsun oh
 tags: javascript CoreJS

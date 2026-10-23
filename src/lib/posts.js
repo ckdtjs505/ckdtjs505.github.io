@@ -2,7 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
-import html from 'remark-html';
+import remarkGfm from 'remark-gfm';
+import remarkRehype from 'remark-rehype';
+import rehypeSlug from 'rehype-slug';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeStringify from 'rehype-stringify';
 
 const postsDirectory = path.join(process.cwd(), '_posts');
 
@@ -118,16 +122,20 @@ export async function getPostData(slug) {
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
 
-  // Use remark to convert markdown into HTML string
+  // 코드 하이라이트·헤딩 id를 빌드 타임에 처리 (mermaid는 아래에서 다이어그램으로 변환하므로 하이라이트 제외)
   const processedContent = await remark()
-    .use(html, { sanitize: false })
+    .use(remarkGfm)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeSlug)
+    .use(rehypeHighlight, { detect: true, plainText: ['mermaid'] })
+    .use(rehypeStringify, { allowDangerousHtml: true })
     .process(matterResult.content);
   let contentHtml = processedContent.toString();
 
   // remark-html은 코드블록 내용을 HTML 이스케이프함 (& → &amp;, > → &gt; 등)
   // Mermaid가 이를 파싱하면 Syntax error 발생하므로, 서버에서 직접 디코딩 후 data-source 속성에 저장
   contentHtml = contentHtml.replace(
-    /<pre><code class="language-mermaid">([\s\S]*?)<\/code><\/pre>/g,
+    /<pre><code class="[^"]*language-mermaid[^"]*">([\s\S]*?)<\/code><\/pre>/g,
     (match, encodedContent) => {
       // 1단계: HTML 엔티티 디코딩
       let decodedContent = encodedContent
@@ -171,7 +179,10 @@ export async function getPostData(slug) {
   // Combine the data with the id and contentHtml
   return {
     slug,
+    id: generateSafeSlug(matchedFileName),
     contentHtml,
+    toc: extractToc(contentHtml),
+    readingMinutes: estimateReadingMinutes(matterResult.content),
     ...matterResult.data,
   };
 }
@@ -208,3 +219,41 @@ export function getPostsByTag(tag) {
   });
 }
 
+function extractToc(contentHtml) {
+  const headings = [];
+  const headingRegex = /<h([23]) id="([^"]+)">([\s\S]*?)<\/h\1>/g;
+  let match;
+  while ((match = headingRegex.exec(contentHtml)) !== null) {
+    headings.push({
+      depth: Number(match[1]),
+      id: match[2],
+      text: match[3].replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').trim(),
+    });
+  }
+  return headings;
+}
+
+// 한국어 기술 글 기준 분당 약 500자로 계산
+function estimateReadingMinutes(markdown) {
+  const charCount = markdown.replace(/\s+/g, '').length;
+  return Math.max(1, Math.round(charCount / 500));
+}
+
+export function getAdjacentPosts(id) {
+  const allPosts = getSortedPostsData();
+  const index = allPosts.findIndex((post) => post.id === id);
+  if (index === -1) return { previous: null, next: null };
+
+  // 목록은 최신순이므로 index + 1이 더 오래된(이전) 글
+  return {
+    previous: allPosts[index + 1] ?? null,
+    next: allPosts[index - 1] ?? null,
+  };
+}
+
+export function getSeriesPosts(series) {
+  if (!series) return [];
+  return getSortedPostsData()
+    .filter((post) => post.series === series)
+    .sort((a, b) => new Date(a.date) - new Date(b.date) || a.id.localeCompare(b.id));
+}

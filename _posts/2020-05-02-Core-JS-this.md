@@ -1,6 +1,7 @@
 ---
 layout: post
 title: '[Core JS] this란?'
+series: 'Core JS'
 date: 2020-05-02T00:00:00.000Z
 author: changsun oh
 tags: javascript CoreJS

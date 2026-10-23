@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
 
 :root {
   --bg-color: #0d1117;
@@ -28,14 +29,14 @@ html, body {
 body {
   background-color: var(--bg-color);
   color: var(--text-primary);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit', 'Pretendard Variable', Pretendard, sans-serif;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 1rem;
@@ -306,3 +307,178 @@ main {
   max-width: 100%;
   height: auto;
 }
+
+/* 본문 헤딩: sticky 헤더에 가려지지 않도록 앵커 이동 시 여백 확보 */
+.post-content h2,
+.post-content h3 {
+  scroll-margin-top: 96px;
+}
+
+.post-content h2 {
+  margin-top: 2.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.post-content h3 {
+  margin-top: 2rem;
+}
+
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  display: block;
+  overflow-x: auto;
+}
+
+.post-content th,
+.post-content td {
+  border: 1px solid var(--card-border);
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.post-content th {
+  background: var(--card-bg);
+}
+
+.post-content pre code.hljs {
+  background: transparent;
+  padding: 0;
+}
+
+/* 목차 */
+.toc {
+  margin-bottom: 2rem;
+  padding: 16px 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+}
+
+.toc summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.toc ol {
+  list-style: none;
+  margin-top: 12px;
+}
+
+.toc li {
+  margin-bottom: 6px;
+}
+
+.toc li.toc-sub {
+  padding-left: 1rem;
+  font-size: 0.95rem;
+}
+
+.toc a {
+  color: var(--text-secondary);
+}
+
+.toc a:hover {
+  color: var(--accent-color);
+}
+
+/* 시리즈 */
+.series-nav {
+  margin-bottom: 2rem;
+  padding: 16px 20px;
+  border: 1px solid rgba(88, 166, 255, 0.25);
+  background: rgba(88, 166, 255, 0.06);
+  border-radius: 12px;
+}
+
+.series-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.series-label,
+.series-count {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.series-count {
+  margin-left: auto;
+}
+
+.series-nav ol {
+  padding-left: 1.4rem;
+  font-size: 0.95rem;
+}
+
+.series-nav li {
+  margin-bottom: 4px;
+}
+
+.series-nav a {
+  color: var(--text-secondary);
+}
+
+.series-nav a:hover {
+  color: var(--accent-color);
+}
+
+.series-nav [aria-current='page'] {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+/* 이전/다음 글 */
+.post-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.post-nav-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  transition: border-color 0.2s ease;
+}
+
+.post-nav-item:hover {
+  border-color: var(--accent-color);
+}
+
+.post-nav-next {
+  text-align: right;
+}
+
+.post-nav-label {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.post-nav-title {
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+@media (max-width: 600px) {
+  .post-nav {
+    grid-template-columns: 1fr;
+  }
+}
+
+.comments {
+  margin-top: 3rem;
+}
+

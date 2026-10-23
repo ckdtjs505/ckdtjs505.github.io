@@ -1,6 +1,7 @@
 ---
 layout: post
 title: '[Core JS] 렉시컬 환경이란?'
+series: 'Core JS'
 date: 2020-05-08T00:00:00.000Z
 author: changsun oh
 tags: javascript CoreJS

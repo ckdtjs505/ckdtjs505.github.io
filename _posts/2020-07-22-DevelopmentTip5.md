@@ -1,6 +1,7 @@
 ---
 layout: post
 title: '[Development Tip #5] 구조 분해 할당'
+series: 'Development Tip'
 date: 2020-07-22T00:00:00.000Z
 author: changsun oh
 tags: Tip

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: '[Core JS] 실행컨텍스트란?'
+series: 'Core JS'
 date: 2020-05-03T00:00:00.000Z
 author: changsun oh
 tags: javascript CoreJS

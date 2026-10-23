@@ -1,6 +1,7 @@
 ---
 layout: post
 title: '[Development Tip #7] 조건문을 깔끔하게 작성하기 '
+series: 'Development Tip'
 date: 2020-07-22T00:00:00.000Z
 author: changsun oh
 tags: Tip

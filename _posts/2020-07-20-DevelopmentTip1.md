@@ -1,6 +1,7 @@
 ---
 layout: post
 title: '[Development Tip #1] 개발자로서의 목표를 가져라'
+series: 'Development Tip'
 date: 2020-07-20T00:00:00.000Z
 tags: Tip
 comments: true

@@ -13,3 +13,11 @@ export function toDate(date) {
 export function postUrl(id) {
   return `${SITE_URL}/posts/${encodeURIComponent(id)}`;
 }
+
+// giscus 댓글 설정: https://giscus.app 에서 발급한 값을 넣으면 댓글이 활성화됨
+export const GISCUS = {
+  repo: 'ckdtjs505/ckdtjs505.github.io',
+  repoId: 'MDEwOlJlcG9zaXRvcnkyNTEzMTQ2MzU=',
+  category: 'Comments',
+  categoryId: '',
+};

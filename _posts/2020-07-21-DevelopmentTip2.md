@@ -1,6 +1,7 @@
 ---
 layout: post
 title: '[Development Tip #2] 기획의 의도를 파악하라 '
+series: 'Development Tip'
 date: 2020-07-21T00:00:00.000Z
 tags: Tip
 comments: true

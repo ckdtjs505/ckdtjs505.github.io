@@ -1,6 +1,7 @@
 ---
 layout: post
 title: '[pnpm]의 3계층 아키텍처와 링크 메커니즘 분석'
+series: 'pnpm 아키텍처'
 date: 2026-09-14T00:00:00.000Z
 tags: pnpm
 comments: true

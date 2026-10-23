@@ -1,6 +1,7 @@
 ---
 layout: post
 title: '[Development Tip #4] 매개변수의 기본값을 생성하라'
+series: 'Development Tip'
 date: 2020-07-22T00:00:00.000Z
 author: changsun oh
 tags: Tip
