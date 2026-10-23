@@ -22,8 +22,22 @@
 }
 
 html, body {
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
+}
+
+html {
+  scroll-padding-top: 96px;
+}
+
+::selection {
+  background: rgba(88, 166, 255, 0.35);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 body {
@@ -79,9 +93,7 @@ header {
   font-family: 'Outfit', sans-serif;
   font-weight: 800;
   font-size: 1.5rem;
-  background: linear-gradient(90deg, #58a6ff, #a371f7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text-primary);
 }
 
 main {
@@ -113,9 +125,6 @@ main {
 .profile-info h2 {
   margin-bottom: 8px;
   font-size: 1.6rem;
-  background: linear-gradient(90deg, #e6edf3, #8b949e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .profile-info p {
@@ -209,8 +218,46 @@ main {
 
 /* Markdown Content */
 .post-content {
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  letter-spacing: -0.01em;
+}
+
+/* 한국어는 어절 단위로 줄바꿈하고, 긴 URL·식별자는 넘치지 않게 끊음 */
+.post-content p,
+.post-content li,
+.post-content blockquote,
+.post-content td {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.post-content a {
+  color: var(--accent-color);
+  text-decoration: underline;
+  text-decoration-color: rgba(88, 166, 255, 0.4);
+  text-underline-offset: 3px;
+}
+
+.post-content a:hover {
+  color: var(--accent-hover);
+  text-decoration-color: currentColor;
+}
+
+.post-content strong {
+  font-weight: 700;
+  color: #f0f6fc;
+}
+
+.post-content h4 {
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+}
+
+.post-content hr {
+  border: 0;
+  border-top: 1px solid var(--card-border);
+  margin: 2.5rem 0;
 }
 
 .post-content p {
@@ -234,7 +281,12 @@ main {
 
 .post-content code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.9em;
+  font-size: 0.875em;
+}
+
+.post-content pre code {
+  line-height: 1.65;
+  letter-spacing: 0;
 }
 
 .post-content p code, .post-content li code {
@@ -398,7 +450,26 @@ main {
   display: flex;
   align-items: baseline;
   gap: 8px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.series-header::-webkit-details-marker {
+  display: none;
+}
+
+.series-header::after {
+  content: '▾';
+  color: var(--text-secondary);
+  transition: transform 0.2s ease;
+}
+
+.series-nav details[open] .series-header {
   margin-bottom: 10px;
+}
+
+.series-nav details[open] .series-header::after {
+  transform: rotate(180deg);
 }
 
 .series-label,
@@ -520,4 +591,61 @@ main {
   border-radius: 12px;
   color: #e3b341;
   font-size: 0.95rem;
+}
+
+/* 모바일 가독성 */
+@media (max-width: 600px) {
+  header {
+    padding: 14px 0;
+    margin-bottom: 28px;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+  }
+
+  .post-header h1 {
+    font-size: 1.75rem;
+    line-height: 1.35;
+  }
+
+  .post-title {
+    font-size: 1.25rem;
+  }
+
+  .post-card {
+    padding: 20px;
+  }
+
+  .post-content {
+    font-size: 1rem;
+  }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: 1.4rem;
+  }
+
+  .post-content pre {
+    padding: 14px;
+    margin-left: -4px;
+    margin-right: -4px;
+  }
+
+  .post-content pre code {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }

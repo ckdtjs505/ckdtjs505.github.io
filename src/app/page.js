@@ -12,8 +12,8 @@ export default function Home() {
         <div className="profile-info">
           <h2>Changsun Oh</h2>
           <p>
-            I like JAVASCRIPT 💛<br />
-            웹 프론트엔드 개발에 관한 지식과 경험을 기록합니다.
+            웹 프론트엔드 개발자입니다.<br />
+            브라우저와 데스크톱(CEF), 보안과 빌드 도구의 경계에서 만난 문제의 원인과 의사결정을 기록합니다.
           </p>
         </div>
       </div>

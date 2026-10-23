@@ -95,7 +95,7 @@ export default function About() {
         <div className="profile-info">
           <h2>안녕하세요, 개발자 오창선입니다!</h2>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
-            저는 웹 프론트엔드 개발에 관한 지식과 경험을 기록하고 공유합니다. 모던 Javascript, Node.js 등을 활용하여 다양한 오픈소스 프로젝트를 만들어가는 것을 좋아합니다.
+            웹 프론트엔드 개발자입니다. 화면을 만드는 일에서 그치지 않고, 데스크톱 클라이언트(CEF)의 생명주기 문제, 클라이언트 변조와 토큰 재사용 같은 웹 보안 이슈, pnpm 같은 빌드 도구의 내부 동작처럼 프론트엔드의 경계에서 생기는 문제를 끝까지 추적하는 것을 좋아합니다. 이 블로그에는 그 과정에서 찾은 원인과, 어떤 대안을 왜 버렸는지까지 기록합니다.
           </p>
           <a href="mailto:ckdtjs304@gmail.com" className="btn-primary" style={{ marginTop: '1rem', display: 'inline-block' }}>
             이메일 보내기

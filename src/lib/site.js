@@ -1,7 +1,7 @@
 export const SITE_URL = 'https://ckdtjs505.github.io';
 export const SITE_NAME = 'Sonia.dev';
 export const SITE_TITLE = '소니아 개발 블로그';
-export const SITE_DESCRIPTION = '웹 프론트엔드 개발에 관한 지식과 실무 경험을 기록합니다.';
+export const SITE_DESCRIPTION = '브라우저와 데스크톱(CEF), 보안과 빌드 도구의 경계에서 만난 문제의 원인과 의사결정을 기록하는 프론트엔드 개발 블로그입니다.';
 
 // gray-matter는 날짜를 Date 객체로, 따옴표로 감싼 값은 문자열로 돌려주므로 둘 다 처리
 export function toDate(date) {
