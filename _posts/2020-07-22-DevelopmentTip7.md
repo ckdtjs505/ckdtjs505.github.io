@@ -8,7 +8,7 @@ tags: Tip
 comments: true
 share: true
 related: false
-summary: 실전 프로젝트에 적용할 수 있는 유용한 프론트엔드 개발 팁 일곱 번째 이야기입니다.
+summary: 거짓 값의 종류를 정리하고, 삼항 연산자와 단락 평가로 조건문을 간결하게 작성하는 방법을 다룹니다.
 ---
 
 ## 목표

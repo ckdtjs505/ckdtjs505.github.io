@@ -64,7 +64,7 @@ summary: 자바스크립트 코드가 실행되는 환경인 실행 컨텍스트
  environmentRecord는 현재 컨텍스트와 관련된 코드의 식별자 정보들을 순서대로 저장한다.  
  즉 컨텍스트 내부 전체를 처음부터 끝까지 훑어가면서 식별자 정보들을 순서대로 수집한다고 생각하자. 
  
-```javascipt
+```javascript
 console.log(a);
 var a = 3;
 ```

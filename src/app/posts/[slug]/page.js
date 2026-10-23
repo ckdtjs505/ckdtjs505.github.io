@@ -1,7 +1,6 @@
 import { getPostData, getAllPostIds, getAdjacentPosts, getSeriesPosts } from '../../../lib/posts'
 import Link from 'next/link'
-import { format, parseISO } from 'date-fns'
-import { SITE_NAME, toDate, postUrl } from '../../../lib/site'
+import { SITE_NAME, toDate, postUrl, formatDate } from '../../../lib/site'
 import TableOfContents from '../../../components/TableOfContents'
 import SeriesNav from '../../../components/SeriesNav'
 import PostNav from '../../../components/PostNav'
@@ -48,7 +47,7 @@ export default async function Post({ params }) {
       <div className="post-header">
         <h1>{postData.title}</h1>
         <div className="post-date">
-          {postData.date ? format(typeof postData.date === 'string' ? parseISO(postData.date) : new Date(postData.date), 'LLLL d, yyyy') : ''}
+          {formatDate(postData.date)}
           {' · '}{postData.readingMinutes}분 읽기
         </div>
         {postData.tags && (

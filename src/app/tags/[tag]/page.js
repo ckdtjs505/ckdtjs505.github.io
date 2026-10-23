@@ -1,7 +1,6 @@
 import { getAllTags, getPostsByTag } from '../../../lib/posts'
 import PostCard from '../../../components/PostCard'
 import Link from 'next/link'
-import { format, parseISO } from 'date-fns'
 
 export async function generateStaticParams() {
   const paths = getAllTags()

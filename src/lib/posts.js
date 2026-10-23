@@ -65,7 +65,8 @@ export function getSortedPostsData() {
     });
 
   // Sort posts by date
-  return allPostsData.sort((a, b) => {
+  // draft: true인 글은 목록·피드·태그에서 제외
+  return allPostsData.filter((post) => !post.draft).sort((a, b) => {
     if (a.date < b.date) {
       return 1;
     } else {
@@ -82,6 +83,7 @@ export function getAllPostIds() {
 
   return fileNames
     .filter((fileName) => fileName.endsWith('.md'))
+    .filter((fileName) => !matter(fs.readFileSync(path.join(postsDirectory, fileName), 'utf8')).data.draft)
     .flatMap((fileName) => {
       const slug = generateSafeSlug(fileName);
       const encodedSlug = encodeURIComponent(slug);
@@ -256,4 +258,16 @@ export function getSeriesPosts(series) {
   return getSortedPostsData()
     .filter((post) => post.series === series)
     .sort((a, b) => new Date(a.date) - new Date(b.date) || a.id.localeCompare(b.id));
+}
+
+export function getTagCounts() {
+  const counts = new Map();
+  getSortedPostsData().forEach((post) => {
+    if (!post.tags) return;
+    const postTags = typeof post.tags === 'string' ? post.tags.split(' ') : post.tags;
+    postTags.forEach((tag) => counts.set(tag, (counts.get(tag) ?? 0) + 1));
+  });
+
+  return Array.from(counts, ([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
 }

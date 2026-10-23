@@ -37,6 +37,9 @@ export default function RootLayout({ children }) {
           <div className="container header-content">
             <a href="/" className="logo">Sonia.dev</a>
             <nav style={{display: 'flex', gap: '1.5rem'}}>
+              <Link href="/tags" style={{fontWeight: 500, color: 'var(--text-secondary)'}}>
+                Tags
+              </Link>
               <Link href="/about" style={{fontWeight: 500, color: 'var(--text-secondary)'}}>
                 About
               </Link>

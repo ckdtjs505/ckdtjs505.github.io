@@ -8,7 +8,7 @@ tags: Tip
 comments: true
 share: true
 related: false
-summary: 실무에서 유용하게 쓰이는 프론트엔드 개발 노하우 네 번째 이야기입니다.
+summary: 매개변수 기본값이 필요한 이유와, 기본값으로 기존 코드에 영향 없이 요구사항 변경에 대응하는 방법을 다룹니다.
 ---
 
 ## 목표 

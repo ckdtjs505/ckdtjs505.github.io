@@ -482,3 +482,20 @@ main {
   margin-top: 3rem;
 }
 
+
+/* 태그 전체 페이지 */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag-cloud .tag {
+  font-size: 0.9rem;
+  padding: 6px 12px;
+}
+
+.tag-count {
+  opacity: 0.7;
+  margin-left: 2px;
+}

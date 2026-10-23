@@ -8,7 +8,7 @@ tags: Tip
 comments: true
 share: true
 related: false
-summary: 놓치기 쉬운 자바스크립트 실전 개발 팁 여섯 번째 이야기입니다.
+summary: 나머지 매개변수(...rest)로 개수가 정해지지 않은 인수를 받아 확장성 있게 처리하는 방법을 다룹니다.
 ---
 
 ## 목표 

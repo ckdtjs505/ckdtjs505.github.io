@@ -18,6 +18,18 @@ export function postUrl(id) {
 export const GISCUS = {
   repo: 'ckdtjs505/ckdtjs505.github.io',
   repoId: 'MDEwOlJlcG9zaXRvcnkyNTEzMTQ2MzU=',
-  category: 'Comments',
-  categoryId: '',
+  category: 'Announcements',
+  categoryId: '', // giscus 앱 설치 후 'DIC_kwDODvrBy84DJYSH'(Announcements)로 설정
 };
+
+const dateFormatter = new Intl.DateTimeFormat('ko-KR', {
+  timeZone: 'Asia/Seoul',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+export function formatDate(date) {
+  const parsed = toDate(date);
+  return parsed ? dateFormatter.format(parsed) : '';
+}

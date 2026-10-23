@@ -4,11 +4,11 @@ title: '[Development Tip #3] 적절한 메서드를 발견하라'
 series: 'Development Tip'
 date: 2020-07-22T00:00:00.000Z
 author: changsun oh
-tags: Tip 미완
+tags: Tip
 comments: true
 share: true
 related: false
-summary: 알아두면 쓸모 있는 자바스크립트 실전 개발 팁 세 번째 이야기입니다.
+summary: hasOwnProperty로 객체 속성을 확인하는 방법과, 값의 유효성을 검사할 때 배열로 변환해 비교하는 방법을 정리합니다.
 ---
 
 ## hasOwnProperty

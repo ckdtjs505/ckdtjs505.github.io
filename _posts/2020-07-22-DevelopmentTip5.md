@@ -8,7 +8,7 @@ tags: Tip
 comments: true
 share: true
 related: false
-summary: 코드를 더 깔끔하게 작성하는 프론트엔드 실전 팁 다섯 번째 이야기입니다.
+summary: 구조 분해 할당의 개념과 필요성, 그리고 구조 분해 할당으로 코드를 리팩터링한 사례를 정리합니다.
 ---
 
 ## 목표 

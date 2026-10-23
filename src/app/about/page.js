@@ -22,15 +22,13 @@ const fullStackProjects = [
     id: 'afreecatv',
     title: '📺 afreecaTV',
     description: '아프리카TV 클론 코딩 프로젝트입니다.',
-    githubLink: 'https://github.com/ckdtjs505/csfreecaTV',
-    viewLink: 'https://csfreecatv.onrender.com/'
+    githubLink: 'https://github.com/ckdtjs505/csfreecaTV'
   },
   {
     id: 'guess-mind',
     title: '✏ guess-mind',
     description: '캐치마인드 클론 코딩 프로젝트입니다.',
-    githubLink: 'https://github.com/ckdtjs505/guess-mind',
-    viewLink: 'https://intense-ravine-34956.herokuapp.com/'
+    githubLink: 'https://github.com/ckdtjs505/guess-mind'
   }
 ];
 
@@ -87,34 +85,6 @@ const frontEndProjects = [
     githubLink: 'https://github.com/ckdtjs505/new-space',
     viewLink: 'https://ckdtjs505.github.io/new-space/'
   },
-  {
-    id: 'hackers',
-    title: '📖 Hackers',
-    description: '해커스 영어 쉐도잉 음원 학습을 위해 제작한 웹사이트입니다.',
-    githubLink: 'https://github.com/ckdtjs505/Hackers',
-    viewLink: 'https://ckdtjs505.github.io/Hackers/'
-  },
-  {
-    id: 'imgprocess',
-    title: '🎨 ImgProcess',
-    description: '이미지의 밝기와 채도를 변환할 수 있는 이미지 처리 웹사이트입니다.',
-    githubLink: 'https://github.com/ckdtjs505/Imageprocess',
-    viewLink: 'https://ckdtjs505.github.io/Imageprocess/'
-  },
-  {
-    id: 'couple',
-    title: '💕 Couple',
-    description: '여자친구를 위해 특별히 제작한 커플 웹사이트입니다.',
-    githubLink: 'https://github.com/ckdtjs505/CSJlove',
-    viewLink: 'https://ckdtjs505.github.io/CSJlove/'
-  },
-  {
-    id: 'church',
-    title: '⛪ Church',
-    description: '사랑과 은혜 교회 청년부를 위한 웹사이트입니다.',
-    githubLink: 'https://github.com/ckdtjs505/ChurchYouth',
-    viewLink: 'https://ckdtjs505.github.io/ChurchYouth/'
-  }
 ];
 
 export default function About() {
@@ -165,8 +135,12 @@ export default function About() {
                   <h3 className="post-title" style={{ marginBottom: '0.5rem' }}>{project.title}</h3>
                   <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.95rem' }}>{project.description}</p>
                   <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    <a href={project.githubLink} target="_blank" rel="noreferrer" className="tag" style={{ textDecoration: 'none' }}>GitHub</a>
-                    <a href={project.viewLink} target="_blank" rel="noreferrer" className="tag" style={{ textDecoration: 'none' }}>View</a>
+                    {project.githubLink && (
+                      <a href={project.githubLink} target="_blank" rel="noreferrer" className="tag" style={{ textDecoration: 'none' }}>GitHub</a>
+                    )}
+                    {project.viewLink && (
+                      <a href={project.viewLink} target="_blank" rel="noreferrer" className="tag" style={{ textDecoration: 'none' }}>View</a>
+                    )}
                   </div>
                 </div>
               ))}

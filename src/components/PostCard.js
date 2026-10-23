@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { format, parseISO } from 'date-fns'
+import { formatDate } from '../lib/site'
 
 export default function PostCard({ id, date, title, tags, excerpt }) {
   const tagList = typeof tags === 'string' ? tags.split(' ') : Array.isArray(tags) ? tags : [];
@@ -26,7 +26,7 @@ export default function PostCard({ id, date, title, tags, excerpt }) {
         </p>
       )}
       <div className="post-date">
-        {date ? format(typeof date === 'string' ? parseISO(date) : new Date(date), 'LLLL d, yyyy') : 'No Date'}
+        {formatDate(date)}
       </div>
       {tagList.length > 0 && (
         <div className="post-tags">

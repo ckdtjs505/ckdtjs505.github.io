@@ -1,6 +1,5 @@
 import PostCard from '../components/PostCard'
 import { getSortedPostsData } from '../lib/posts'
-import { format, parseISO } from 'date-fns'
 
 export default function Home() {
   const allPostsData = getSortedPostsData()
