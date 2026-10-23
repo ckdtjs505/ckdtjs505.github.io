@@ -1,7 +1,7 @@
 ---
 layout: post
 title: '[Core JS] 클래스란?'
-date: 2020-06-21T00:00:00.000Z
+date: 2020-07-01T00:00:00.000Z
 author: changsun oh
 tags: javascript CoreJS
 comments: true

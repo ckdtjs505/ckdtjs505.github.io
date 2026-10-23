@@ -127,7 +127,7 @@ export default function About() {
           <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
             저는 웹 프론트엔드 개발에 관한 지식과 경험을 기록하고 공유합니다. 모던 Javascript, Node.js 등을 활용하여 다양한 오픈소스 프로젝트를 만들어가는 것을 좋아합니다.
           </p>
-          <a href="mailto:your.email@example.com" className="btn-primary" style={{ marginTop: '1rem', display: 'inline-block' }}>
+          <a href="mailto:ckdtjs304@gmail.com" className="btn-primary" style={{ marginTop: '1rem', display: 'inline-block' }}>
             이메일 보내기
           </a>
         </div>

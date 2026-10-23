@@ -102,9 +102,6 @@ export async function getPostData(slug) {
   } catch (e) {
     // Ignore decode errors
   }
-  
-  console.log(`[DEBUG] getPostData slug: "${slug}" -> decoded: "${decodedSlug}"`);
-  
   const matchedFileName = fileNames.find(fileName => {
     const rawSafeSlug = fileName.replace(/\.md$/, '').replace(/\[|\]/g, '-').replace(/\s+/g, '-').replace(/-+/g, '-');
     return rawSafeSlug === decodedSlug || rawSafeSlug === slug || encodeURIComponent(rawSafeSlug) === slug;

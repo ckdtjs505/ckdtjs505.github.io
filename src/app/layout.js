@@ -3,11 +3,26 @@ import Script from 'next/script'
 import HighlightListener from './HighlightListener'
 import MermaidListener from './MermaidListener'
 import Link from 'next/link'
+import { SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION } from '../lib/site'
 
 export const metadata = {
-  title: '소니아 개발 블로그',
-  description: '주로 자바스크립트에 대해 다룹니다 ㅎㅎ',
-  keywords: 'javascript, react, nodejs'
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  keywords: 'javascript, react, nodejs, frontend',
+  alternates: {
+    types: { 'application/rss+xml': '/feed.xml' },
+  },
+  openGraph: {
+    type: 'website',
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: '/',
+    locale: 'ko_KR',
+    images: ['/assets/img/avatar.jpg'],
+  },
+  twitter: { card: 'summary' },
 }
 
 export default function RootLayout({ children }) {

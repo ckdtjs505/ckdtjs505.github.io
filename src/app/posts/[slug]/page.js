@@ -1,6 +1,7 @@
 import { getPostData, getAllPostIds } from '../../../lib/posts'
 import Link from 'next/link'
 import { format, parseISO } from 'date-fns'
+import { SITE_NAME, toDate, postUrl } from '../../../lib/site'
 
 export async function generateStaticParams() {
   const paths = getAllPostIds()
@@ -11,8 +12,22 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const postData = await getPostData(params.slug)
+  const title = `${postData.title} | ${SITE_NAME}`
+  const url = postUrl(decodeURIComponent(params.slug))
+  const publishedTime = toDate(postData.date)?.toISOString()
+
   return {
-    title: `${postData.title} | Sonia.dev`,
+    title,
+    description: postData.summary,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      title,
+      description: postData.summary,
+      url,
+      publishedTime,
+      tags: typeof postData.tags === 'string' ? postData.tags.split(' ') : postData.tags,
+    },
   }
 }
 
