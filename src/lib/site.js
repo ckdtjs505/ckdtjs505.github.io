@@ -19,7 +19,7 @@ export const GISCUS = {
   repo: 'ckdtjs505/ckdtjs505.github.io',
   repoId: 'MDEwOlJlcG9zaXRvcnkyNTEzMTQ2MzU=',
   category: 'Announcements',
-  categoryId: '', // giscus 앱 설치 후 'DIC_kwDODvrBy84DJYSH'(Announcements)로 설정
+  categoryId: 'DIC_kwDODvrBy84DJYSH',
 };
 
 const dateFormatter = new Intl.DateTimeFormat('ko-KR', {
