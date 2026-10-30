@@ -12,8 +12,8 @@ export default function Home() {
         <div className="profile-info">
           <h2>Changsun Oh</h2>
           <p>
-            웹 프론트엔드 개발자입니다.<br />
-            브라우저와 데스크톱(CEF), 보안과 빌드 도구의 경계에서 만난 문제의 원인과 의사결정을 기록합니다.
+            라이브 스트리밍 웹 플레이어를 만드는 7년 차 프론트엔드 개발자입니다.<br />
+            제가 겪고 풀어낸 문제들이 누군가에게 지름길이 되길 바라며 기록합니다.
           </p>
         </div>
       </div>
