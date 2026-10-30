@@ -95,7 +95,13 @@ export default function About() {
         <div className="profile-info">
           <h2>안녕하세요, 개발자 오창선입니다!</h2>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
-            웹 프론트엔드 개발자입니다. 화면을 만드는 일에서 그치지 않고, 데스크톱 클라이언트(CEF)의 생명주기 문제, 클라이언트 변조와 토큰 재사용 같은 웹 보안 이슈, pnpm 같은 빌드 도구의 내부 동작처럼 프론트엔드의 경계에서 생기는 문제를 끝까지 추적하는 것을 좋아합니다. 이 블로그에는 그 과정에서 찾은 원인과, 어떤 대안을 왜 버렸는지까지 기록합니다.
+            2020년부터 라이브 스트리밍 웹 플레이어를 만들고 운영하고 있습니다. 영상이 끊기는 이유를 추적하는 일부터 CEF 생명주기, 웹 보안, 빌드 도구처럼 프론트엔드의 경계에서 생기는 문제를 끝까지 파고드는 것을 좋아합니다.
+          </p>
+          <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
+            요즘은 AI와 함께 일하면서, 문제를 푸는 과정 자체를 파이프라인으로 만드는 데 관심이 많습니다.
+          </p>
+          <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
+            이 블로그에는 그 과정에서 찾은 원인과 어떤 대안을 왜 버렸는지까지 기록합니다. 제가 헤맨 길이 누군가에게는 지름길이 되길 바랍니다.
           </p>
           <a href="mailto:ckdtjs304@gmail.com" className="btn-primary" style={{ marginTop: '1rem', display: 'inline-block' }}>
             이메일 보내기
