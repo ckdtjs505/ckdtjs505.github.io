@@ -6,6 +6,7 @@ tags: ["회고", "생산성", "AI", "일하는방식"]
 comments: true
 share: true
 related: false
+featured: true
 summary: "시작이 느린 성향을 고치려고 캘린더 블럭과 블럭별 할 일 목록을 만들었다. 한 달 동안 '딥워크/자잘한 일' 구분, 코드 읽기 블럭, 전날 정해 두는 내일 할 일을 차례로 버렸고, 그 이유와 지금 남은 구조를 정리했다."
 draft: false
 ---

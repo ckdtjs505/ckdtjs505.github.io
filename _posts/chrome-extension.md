@@ -7,7 +7,7 @@ tags: [Chrome Extension, Web Worker]
 comments: true
 share: true
 related: false
-summary: 크롬 브라우저 확장 프로그램 개발 과정과 내부 아키텍처에 대한 정리입니다.
+summary: VOD 플레이어 내부 큐에 가상 데이터 패킷 10,000개를 한 번에 주입하는 Chrome 확장 프로그램을 만들며 정리한 5단계 격리 컨텍스트 통신 구조와 Web Worker·타임 오프셋 치환 방식
 ---
 
 # VOD 10,000개 데이터 패킷 대량 주입 파이프라인 분석
