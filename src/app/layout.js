@@ -1,7 +1,8 @@
 import './globals.css'
 import MermaidListener from './MermaidListener'
 import Link from 'next/link'
-import { SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION } from '../lib/site'
+import JsonLd from '../components/JsonLd'
+import { SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION, AUTHOR } from '../lib/site'
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -23,6 +24,36 @@ export const metadata = {
   twitter: { card: 'summary' },
 }
 
+const siteJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: SITE_NAME,
+      alternateName: SITE_TITLE,
+      description: SITE_DESCRIPTION,
+      inLanguage: 'ko-KR',
+      publisher: { '@id': `${AUTHOR.url}#person` },
+    },
+    {
+      '@type': 'Blog',
+      '@id': `${SITE_URL}/#blog`,
+      url: `${SITE_URL}/`,
+      name: SITE_TITLE,
+      inLanguage: 'ko-KR',
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      author: { '@id': `${AUTHOR.url}#person` },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${AUTHOR.url}#person`,
+      ...AUTHOR,
+    },
+  ],
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="ko">
@@ -30,6 +61,7 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
       </head>
       <body>
+        <JsonLd data={siteJsonLd} />
         <MermaidListener />
         <header>
           <div className="container header-content">

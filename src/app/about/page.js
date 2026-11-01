@@ -1,6 +1,28 @@
+import JsonLd from '../../components/JsonLd'
+import { SITE_NAME, AUTHOR } from '../../lib/site'
+
+const description = '2020년부터 라이브 스트리밍 웹 플레이어를 만들고 운영하는 프론트엔드 개발자 오창선(Changsun Oh)의 소개와 프로젝트입니다.'
 
 export const metadata = {
-  title: 'About | Sonia.dev',
+  title: `About | ${SITE_NAME}`,
+  description,
+  alternates: { canonical: '/about' },
+  openGraph: {
+    type: 'profile',
+    siteName: SITE_NAME,
+    title: `About | ${SITE_NAME}`,
+    description,
+    url: '/about',
+    locale: 'ko_KR',
+    images: ['/assets/img/avatar.jpg'],
+  },
+}
+
+const profileJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  url: AUTHOR.url,
+  mainEntity: { '@id': `${AUTHOR.url}#person` },
 }
 
 const fullStackProjects = [
@@ -90,10 +112,11 @@ const frontEndProjects = [
 export default function About() {
   return (
     <section>
+      <JsonLd data={profileJsonLd} />
       <div className="profile-section" style={{ marginBottom: '4rem' }}>
         <img src="/assets/img/avatar.jpg" alt="Sonia의 프로필 이미지" className="profile-img" />
         <div className="profile-info">
-          <h2>안녕하세요, 개발자 오창선입니다!</h2>
+          <h1>안녕하세요, 개발자 오창선입니다!</h1>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
             2020년부터 라이브 스트리밍 웹 플레이어를 만들고 운영하고 있습니다. 영상이 끊기는 이유를 추적하는 일부터 CEF 생명주기, 웹 보안, 빌드 도구처럼 프론트엔드의 경계에서 생기는 문제를 끝까지 파고드는 것을 좋아합니다.
           </p>

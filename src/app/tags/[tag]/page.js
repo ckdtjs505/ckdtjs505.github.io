@@ -10,8 +10,10 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
+  const decodedTag = decodeURIComponent(params.tag)
   return {
-    title: `태그: ${params.tag} | Sonia.dev`,
+    title: `태그: ${decodedTag} | Sonia.dev`,
+    alternates: { canonical: `/tags/${encodeURIComponent(decodedTag)}` },
   }
 }
 

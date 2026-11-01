@@ -3,6 +3,16 @@ export const SITE_NAME = 'Sonia.dev';
 export const SITE_TITLE = '소니아 개발 블로그';
 export const SITE_DESCRIPTION = '라이브 스트리밍 웹 플레이어를 만드는 프론트엔드 개발자가 부딪힌 문제와 풀어낸 과정을 기록하는 블로그입니다.';
 
+// 글쓴이 정보: 화면의 글쓴이 표시와 JSON-LD(Person)가 같은 값을 쓰도록 한 곳에 모아 둠
+export const AUTHOR = {
+  name: '오창선',
+  alternateName: 'Changsun Oh',
+  jobTitle: 'Frontend Developer',
+  url: `${SITE_URL}/about`,
+  image: `${SITE_URL}/assets/img/avatar.jpg`,
+  sameAs: ['https://github.com/ckdtjs505'],
+};
+
 // gray-matter는 날짜를 Date 객체로, 따옴표로 감싼 값은 문자열로 돌려주므로 둘 다 처리
 export function toDate(date) {
   if (!date) return null;

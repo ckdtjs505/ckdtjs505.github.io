@@ -1,6 +1,13 @@
 import PostCard from '../components/PostCard'
 import { getSortedPostsData } from '../lib/posts'
 
+export const metadata = {
+  alternates: {
+    canonical: '/',
+    types: { 'application/rss+xml': '/feed.xml' },
+  },
+}
+
 export default function Home() {
   const allPostsData = getSortedPostsData()
   const featuredPosts = allPostsData.filter((post) => post.featured)
@@ -10,7 +17,7 @@ export default function Home() {
       <div className="profile-section">
         <img src="/assets/img/avatar.jpg" alt="Sonia의 프로필 이미지" className="profile-img" />
         <div className="profile-info">
-          <h2>Changsun Oh</h2>
+          <h1>Changsun Oh</h1>
           <p>
             라이브 스트리밍 웹 플레이어를 만드는 7년 차 프론트엔드 개발자입니다.<br />
             제가 겪고 풀어낸 문제들이 누군가에게 지름길이 되길 바라며 기록합니다.

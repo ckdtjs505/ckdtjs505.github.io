@@ -122,6 +122,7 @@ main {
   background-color: var(--bg-color);
 }
 
+.profile-info h1,
 .profile-info h2 {
   margin-bottom: 8px;
   font-size: 1.6rem;

@@ -1,11 +1,12 @@
 import { getPostData, getAllPostIds, getAdjacentPosts, getSeriesPosts } from '../../../lib/posts'
 import Link from 'next/link'
-import { SITE_NAME, toDate, postUrl, formatDate } from '../../../lib/site'
+import { SITE_URL, SITE_NAME, AUTHOR, toDate, postUrl, formatDate } from '../../../lib/site'
 import TableOfContents from '../../../components/TableOfContents'
 import SeriesNav from '../../../components/SeriesNav'
 import PostNav from '../../../components/PostNav'
 import Comments from '../../../components/Comments'
 import OutdatedNotice from '../../../components/OutdatedNotice'
+import JsonLd from '../../../components/JsonLd'
 
 export async function generateStaticParams() {
   const paths = getAllPostIds()
@@ -41,16 +42,51 @@ export default async function Post({ params }) {
   const postData = await getPostData(params.slug)
   const { previous, next } = getAdjacentPosts(postData.id)
   const seriesPosts = getSeriesPosts(postData.series)
+  const url = postUrl(postData.id)
+  const publishedTime = toDate(postData.date)?.toISOString()
+  // modified가 front matter에 있으면 수정일로 쓰고, 없으면 발행일과 같게 둠
+  const modifiedTime = toDate(postData.modified)?.toISOString() ?? publishedTime
+  const tags = typeof postData.tags === 'string' ? postData.tags.split(' ') : postData.tags
+
+  const postJsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BlogPosting',
+        '@id': `${url}#post`,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+        headline: postData.title,
+        description: postData.summary,
+        image: `${SITE_URL}/og/${encodeURIComponent(postData.id)}.png`,
+        datePublished: publishedTime,
+        dateModified: modifiedTime,
+        inLanguage: 'ko-KR',
+        keywords: Array.isArray(tags) ? tags.join(', ') : undefined,
+        author: { '@id': `${AUTHOR.url}#person` },
+        publisher: { '@id': `${AUTHOR.url}#person` },
+        isPartOf: { '@id': `${SITE_URL}/#blog` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: SITE_NAME, item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: postData.title, item: url },
+        ],
+      },
+    ],
+  }
 
   return (
     <article>
+      <JsonLd data={postJsonLd} />
       <Link href="/" className="back-link">
         ← 목록으로 돌아가기
       </Link>
       <div className="post-header">
         <h1>{postData.title}</h1>
         <div className="post-date">
-          {formatDate(postData.date)}
+          <Link href="/about" rel="author">{AUTHOR.name}</Link>
+          {' · '}{formatDate(postData.date)}
           {' · '}{postData.readingMinutes}분 읽기
         </div>
         {postData.tags && (
