@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { ImageResponse } from 'next/og'
 import { getSortedPostsData } from '../../../lib/posts'
-import { SITE_NAME, formatDate } from '../../../lib/site'
+import { SITE_NAME, SITE_TITLE, formatDate } from '../../../lib/site'
 
 export const dynamic = 'force-static'
 export const dynamicParams = false
@@ -16,7 +16,8 @@ const fonts = [
 
 // 정적 export에서 확장자가 있어야 GitHub Pages가 image/png로 서빙하므로 파라미터에 .png를 포함
 export function generateStaticParams() {
-  return getSortedPostsData().map((post) => ({ file: `${post.id}.png` }))
+  // default.png는 홈·태그처럼 글이 아닌 페이지의 공유 이미지
+  return [{ file: 'default.png' }, ...getSortedPostsData().map((post) => ({ file: `${post.id}.png` }))]
 }
 
 export function GET(request, { params }) {
@@ -44,7 +45,7 @@ export function GET(request, { params }) {
             <div style={{ fontSize: 30, fontWeight: 500, color: '#58a6ff' }}>{`${post.series} 시리즈`}</div>
           )}
           <div style={{ fontSize: 64, fontWeight: 700, lineHeight: 1.3, wordBreak: 'keep-all' }}>
-            {post?.title ?? SITE_NAME}
+            {post?.title ?? SITE_TITLE}
           </div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>

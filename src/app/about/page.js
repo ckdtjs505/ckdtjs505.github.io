@@ -114,7 +114,7 @@ export default function About() {
     <section>
       <JsonLd data={profileJsonLd} />
       <div className="profile-section" style={{ marginBottom: '4rem' }}>
-        <img src="/assets/img/avatar.jpg" alt="Sonia의 프로필 이미지" className="profile-img" />
+        <img src="/assets/img/avatar.jpg" alt="Sonia의 프로필 이미지" className="profile-img" width={100} height={100} />
         <div className="profile-info">
           <h1>안녕하세요, 개발자 오창선입니다!</h1>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>

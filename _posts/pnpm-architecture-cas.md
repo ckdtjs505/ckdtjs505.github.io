@@ -52,9 +52,12 @@ ls -li ~/cas-store/a1b2c3d4e5f6 ~/my-notes/오늘할일.txt
 
 ```javascript
 const fs = require('fs');
+const os = require('os');
+const path = require('path');
 
 // 일반 파일과 완전히 동일한 방식으로 처리
-const content = fs.readFileSync('~/my-notes/오늘할일.txt', 'utf-8');
+// Node.js는 셸과 달리 `~`를 홈 디렉터리로 바꿔 주지 않으므로 os.homedir()로 경로를 만듦
+const content = fs.readFileSync(path.join(os.homedir(), 'my-notes', '오늘할일.txt'), 'utf-8');
 console.log(content);
 ```
 
@@ -71,3 +74,5 @@ CAS 기반 저장소가 디스크 절약과 데이터 무결성을 챙기면서�
 - Unix/Linux 파일 시스템의 inode 구조
 - 심볼릭 링크(Soft Link)와 하드 링크(Hard Link)의 내부 구조 차이
 - Git 및 pnpm의 CAS(Content-Addressable Storage) 저장소 관리 기법
+- [pnpm 공식 문서: 심볼릭 링크된 node_modules 구조](https://pnpm.io/ko/symlinked-node-modules-structure)
+- [pnpm 공식 문서: 동기 (콘텐츠 주소 지정 저장소)](https://pnpm.io/ko/motivation)

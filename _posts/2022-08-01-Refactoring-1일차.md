@@ -2,7 +2,7 @@
 layout: post
 title: '[Refactoring] 1일차'
 date: 2022-08-01T00:00:00.000Z
-tags: Refactoring
+tags: 리팩터링
 comments: true
 share: true
 related: false
