@@ -1,7 +1,7 @@
 ---
 layout: post
 series: '임베디드 브라우저'
-title: CEF 환경에서의 모달 창 종료와 API 호출 Race Condition 트러블슈팅
+title: 'CEF 창을 닫으면 API 요청이 사라지는 이유: 모달 종료 Race Condition 트러블슈팅'
 featured: true
 date: 2026-09-16
 tags:
@@ -13,7 +13,7 @@ tags:
 comments: true
 share: true
 related: false
-summary: 대기 시간을 줄이려고 모달을 먼저 닫았더니, 배포 당일 요청이 간헐적으로 사라졌다. CEF에서 창이 닫히는 순간 무슨 일이 일어나는지, 왜 QA에서는 보이지 않았는지, 그리고 어떤 대안을 왜 버렸는지 정리했다.
+summary: CEF(Chromium Embedded Framework) 창을 닫으면 JS 컨텍스트와 함께 아직 전송되지 않은 fetch·API 요청도 사라진다. 모달을 먼저 닫았다가 배포 당일 요청이 간헐적으로 누락된 원인, QA에서 재현되지 않은 이유, 버린 대안과 최종 해결(응답을 받은 뒤 창 닫기)을 정리했다.
 ---
 
 ## TL;DR

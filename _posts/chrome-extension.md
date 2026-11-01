@@ -11,18 +11,33 @@ related: false
 summary: VOD 플레이어 내부 큐에 가상 데이터 패킷 10,000개를 한 번에 주입하는 Chrome 확장 프로그램을 만들며 정리한 5단계 격리 컨텍스트 통신 구조와 Web Worker·타임 오프셋 치환 방식
 ---
 
-## 목표
+## 이 글에서 다루는 것
 
 * Chrome 확장 프로그램의 5단계 레이어 통신 구조를 파악하고, Web Worker와 타임 오프셋 치환 방식을 활용해 VOD 플레이어 내부 큐에 10,000개의 가상 데이터 패킷을 효율적으로 주입하는 흐름을 정립합니다.
 
-## 기억하기
+## VOD 플레이어에 패킷 10,000개를 어떻게 한 번에 넣나요?
+
+Web Worker에서 10,000개를 XML 문자열 하나로 미리 만들어 **한 번의 `postMessage`로 넘기고**, 시간 값은 자리표시자로 두었다가 페이지에 넣는 순간 현재 재생 시간 기준으로 바꿔 넣습니다.
 
 * **VOD vs LIVE 모드 파라미터 차이:** VOD 모드에서 `rate`는 초당 전송률이 아니라 **총 생성 패킷 수**를 의미합니다.
 * **단일 벌크 전송 (Bulk Transfer):** 1초마다 tick 단위로 패킷을 발행하는 LIVE 모드와 달리, START 시점에 Web Worker에서 10,000개 패킷 전체를 단일 `<root>` XML 문자열로 일괄 생성해 단 1회의 `postMessage`로 전달합니다.
 * **타임 오프셋 플레이스홀더 패턴:** 생성 시점에는 `__VOD_TIME_OFFSET_{s}__` 형태로 상대 시간(초)을 마킹하고, 최종 주입 계층(`page.js`)에서 실제 `videoEl.currentTime + 2초`를 기준으로 절대 타임스탬프로 일괄 치환합니다.
 * **5단계 격리 컨텍스트 통신:** `Popup UI (popup.js)` → `Content Script (content.js)` → `Web Worker (worker.js)` → `Content Script (content.js)` → `Page Script (page.js)` → `VOD Player` 순으로 데이터를 중계합니다.
 
-## 내용
+## 확장 프로그램은 왜 페이지의 JS 변수에 바로 접근하지 못하나요?
+
+Chrome 확장 프로그램의 content script는 웹 페이지와 DOM은 공유하지만, **JavaScript 실행 환경은 분리된 별도의 세계(isolated world)에서 돌아갑니다.** 그래서 content script에서는 페이지가 만든 전역 변수나 플레이어 객체(`dataItem` 같은)에 직접 손댈 수 없습니다.
+
+페이지의 객체를 다뤄야 할 때는 페이지 컨텍스트에서 실행되는 스크립트(page script)를 따로 넣고, 둘 사이를 `window.postMessage`로 잇는 방식이 일반적입니다. 이 글의 파이프라인이 5단계로 길어진 것도 이 경계 때문입니다.
+
+| 컨텍스트 | 페이지 DOM | 페이지 JS 변수 | chrome.* API | 서로 통신하는 방법 |
+|---|---|---|---|---|
+| Popup (`popup.js`) | X | X | O | `chrome.tabs.sendMessage` |
+| Content Script (`content.js`) | O | X | 일부 | `chrome.runtime` 메시지, `window.postMessage` |
+| Page Script (`page.js`) | O | O | X | `window.postMessage` |
+| Web Worker (`worker.js`) | X | X | X | `worker.postMessage` |
+
+## 데이터는 어떤 단계를 거쳐 플레이어에 도착하나요?
 
 전체 파이프라인은 Chrome 확장 프로그램의 보안 격리 환경을 넘나드는 5단계 레이어로 구성됩니다.
 

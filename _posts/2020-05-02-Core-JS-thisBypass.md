@@ -10,13 +10,13 @@ share: true
 related: false
 summary: this 바인딩의 예외적인 상황들과 화살표 함수 등 우회하는 방법에 대해 알아봅니다.
 ---
-## 목표 
+## 이 글에서 다루는 것
 * this를 우회하는 3가지 방법을 이해한다. 
 * 변수를 활용하여 this를 우회한다. 
 * 화살표 함수를 이용하셔 this를 우회한다.
 * call, apply, bind 메서드를 이용하여 this를 우회한다.
 
-## this 우회 배경
+## this를 왜 우회해야 하나요?
 * 상황에 따라 this가 결정된다. 
   *  this는 기본적으로 실행 컨텍스트가 생성될때 결정된다.
   *  함수 내부에서 this는 **전역 객체**로 결정된다. 
@@ -26,7 +26,7 @@ summary: this 바인딩의 예외적인 상황들과 화살표 함수 등 우회
 * 특정 상황에 맞는 this를 할 수 있게 된다.  
 * 함수 내부에서는 this가 **전역 객체**로만 결정되는 오류를 해결 할 수 있다.
 
-## 변수를 활용한 this 우회 
+## 변수에 담아서 this를 우회하려면?
 
 ```javascript 
 var object = {
@@ -56,7 +56,7 @@ inner[object Object]
 
 self라는 변수에 outer의 호출 객체를 바인딩한 **this(object)**를 할당함으로 inner함수에도 스코프 체인에 의해 **this(object)**에 접근할 수 있게 된다.  
 
-## 화살표 함수를 이용한 this 우회
+## 화살표 함수로 this를 우회하려면?
 
 * ES6에서는 this가 전역객체를 바라보는 문제를 해결하고자, this를 바인딩하지 않는 화살표 함수가 생성
 * ES6가 지원된다면 **화살표 함수**로 간단하게 구현하자
@@ -84,7 +84,7 @@ object.outer();
 6. 6 번째줄 console 실행 : outer object object
 
 
-## call, apply, bind 메서드를 활용한 this 우회
+## call, apply, bind로 this를 지정하려면? 셋은 어떻게 다른가요?
 
 ### 1. call
 > call 메서드는 주어진 **this**값 및 각각 전달된 인수와 함께 호출합니다. [출처 MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/call)
