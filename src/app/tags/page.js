@@ -5,6 +5,7 @@ import { SITE_NAME } from '../../lib/site'
 export const metadata = {
   title: `태그 | ${SITE_NAME}`,
   description: '주제별로 글을 모아 봅니다.',
+  alternates: { canonical: '/tags' },
 }
 
 export default function TagsPage() {

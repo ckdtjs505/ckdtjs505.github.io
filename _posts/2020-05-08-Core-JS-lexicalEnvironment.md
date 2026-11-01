@@ -81,7 +81,6 @@ log 컨텍스트에서 name은 'global'이므로 global을 출력하게 된다.
 
 
 
-# 
 
 ```javascript
 function outer() {
