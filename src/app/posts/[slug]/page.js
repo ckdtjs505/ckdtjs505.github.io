@@ -7,6 +7,8 @@ import PostNav from '../../../components/PostNav'
 import Comments from '../../../components/Comments'
 import OutdatedNotice from '../../../components/OutdatedNotice'
 import JsonLd from '../../../components/JsonLd'
+// 코드 하이라이트는 빌드 때(rehype-highlight) 끝나므로 테마 CSS만 글 페이지에서 번들로 불러옴
+import 'highlight.js/styles/atom-one-dark.css'
 
 export async function generateStaticParams() {
   const paths = getAllPostIds()

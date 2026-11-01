@@ -1,5 +1,6 @@
 ---
 layout: post
+series: '임베디드 브라우저'
 title: 'Chrome 확장 프로그램: VOD 데이터 패킷 대량 주입 파이프라인 분석'
 featured: true
 date: 2026-09-09T23:21:40.707Z

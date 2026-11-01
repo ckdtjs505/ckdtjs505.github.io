@@ -1,5 +1,6 @@
 ---
 layout: post
+series: '임베디드 브라우저'
 title: CEF 환경에서의 모달 창 종료와 API 호출 Race Condition 트러블슈팅
 featured: true
 date: 2026-09-16

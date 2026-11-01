@@ -14,6 +14,8 @@ export async function generateMetadata({ params }) {
   return {
     title: `태그: ${decodedTag} | Sonia.dev`,
     alternates: { canonical: `/tags/${encodeURIComponent(decodedTag)}` },
+    // 글이 1개뿐인 태그 페이지는 내용이 얇아 색인에서 빼고 링크만 따라가게 함
+    robots: getPostsByTag(params.tag).length < 2 ? { index: false, follow: true } : undefined,
   }
 }
 

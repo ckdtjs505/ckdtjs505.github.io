@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <section>
       <div className="profile-section">
-        <img src="/assets/img/avatar.jpg" alt="Sonia의 프로필 이미지" className="profile-img" />
+        <img src="/assets/img/avatar.jpg" alt="Sonia의 프로필 이미지" className="profile-img" width={100} height={100} fetchPriority="high" />
         <div className="profile-info">
           <h1>Changsun Oh</h1>
           <p>
