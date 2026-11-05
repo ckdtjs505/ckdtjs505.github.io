@@ -6,7 +6,6 @@ tags: [AI, 회고, 코드품질]
 comments: true
 share: true
 related: false
-draft: true
 summary: 광고로 들어온 사용자에게 음소거 자동재생을 거는 기능을 나는 20줄, Claude Code는 50줄로 짰다. 내 코드는 기존 음소거 함수를 재사용하다 localStorage에 음소거 값을 남겨 새로고침 후에도 소리를 못 켜는 문제가 생겼고, AI는 저장하지 않는 별도 상태로 부작용을 피했다.
 ---
 
