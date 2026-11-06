@@ -6,7 +6,6 @@ tags: [AI, 회고]
 comments: true
 share: true
 related: false
-draft: true
 summary: Claude Code 토큰을 아끼려고 ponytail과 graphify를 설치했지만 세션 로그로 집계해 보니 토큰은 거의 줄지 않았다. 사용량의 97%가 다시 읽는 맥락이었고, ponytail은 코드를 덜 쓰게 하는 도구, graphify는 구조를 보여 주는 도구라 그 부분을 건드리지 않았다.
 ---
 
