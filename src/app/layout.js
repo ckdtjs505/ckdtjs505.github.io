@@ -1,5 +1,6 @@
 import './globals.css'
 import MermaidListener from './MermaidListener'
+import PageViews from './PageViews'
 import Link from 'next/link'
 import { Outfit } from 'next/font/google'
 import JsonLd from '../components/JsonLd'
@@ -73,6 +74,7 @@ export default function RootLayout({ children }) {
       <body>
         <JsonLd data={siteJsonLd} />
         <MermaidListener />
+        <PageViews />
         <header>
           <div className="container header-content">
             <Link href="/" className="logo">Sonia.dev</Link>

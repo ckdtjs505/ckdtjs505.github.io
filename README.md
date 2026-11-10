@@ -4,12 +4,13 @@
 
 - 블로그: https://ckdtjs505.github.io
 - RSS: https://ckdtjs505.github.io/feed.xml
+- 조회수: https://ckdtjs505.goatcounter.com (GoatCounter, 글별 조회수 순위)
 
 ## 기술 스택
 
 - Next.js 14 (App Router, `output: 'export'` 정적 사이트)
 - Markdown + gray-matter, remark/rehype (GFM, 빌드 타임 코드 하이라이트, 헤딩 앵커)
-- Mermaid 다이어그램, giscus 댓글
+- Mermaid 다이어그램, giscus 댓글, GoatCounter 조회수 집계 (`src/lib/site.js`의 `GOATCOUNTER_CODE`)
 - GitHub Actions → GitHub Pages 배포 (`master` push 시 자동)
 
 ## 로컬 실행

@@ -32,6 +32,9 @@ export const GISCUS = {
   categoryId: 'DIC_kwDODvrBy84DJYSH',
 };
 
+// GoatCounter 조회수 집계 코드: https://www.goatcounter.com 에서 이 이름으로 사이트를 만들면 집계가 시작됨. 비우면 꺼짐
+export const GOATCOUNTER_CODE = 'ckdtjs505';
+
 const dateFormatter = new Intl.DateTimeFormat('ko-KR', {
   timeZone: 'Asia/Seoul',
   year: 'numeric',
