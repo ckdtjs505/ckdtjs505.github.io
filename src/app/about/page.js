@@ -1,7 +1,7 @@
 import JsonLd from '../../components/JsonLd'
 import { SITE_NAME, AUTHOR } from '../../lib/site'
 
-const description = '2020년부터 라이브 스트리밍 웹 플레이어를 만들고 운영하는 프론트엔드 개발자 오창선(Changsun Oh)의 소개와 프로젝트입니다.'
+const description = 'AI를 활용해 문제를 풀고, 2020년부터 라이브 스트리밍 웹 플레이어를 만들어 온 개발자 오창선(Changsun Oh)의 소개와 프로젝트입니다.'
 
 export const metadata = {
   title: `About | ${SITE_NAME}`,
@@ -118,10 +118,10 @@ export default function About() {
         <div className="profile-info">
           <h1>안녕하세요, 개발자 오창선입니다!</h1>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
-            2020년부터 라이브 스트리밍 웹 플레이어를 만들고 운영하고 있습니다. 영상이 끊기는 이유를 추적하는 일부터 CEF 생명주기, 웹 보안, 빌드 도구처럼 프론트엔드의 경계에서 생기는 문제를 끝까지 파고드는 것을 좋아합니다.
+            2020년부터 라이브 스트리밍 웹 플레이어를 만들고 운영하고 있습니다. 영상이 끊기는 이유를 추적하는 일부터 CEF 생명주기, 웹 보안, 빌드 도구처럼 FE·BE 경계를 가리지 않고 생기는 문제를 끝까지 파고드는 것을 좋아합니다.
           </p>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
-            요즘은 AI와 함께 일하면서, 문제를 푸는 과정 자체를 파이프라인으로 만드는 데 관심이 많습니다.
+            요즘은 AI를 동료처럼 쓰면서, 문제를 푸는 과정 자체를 파이프라인으로 만드는 데 집중하고 있습니다.
           </p>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
             이 블로그에는 그 과정에서 찾은 원인과 어떤 대안을 왜 버렸는지까지 기록합니다. 제가 헤맨 길이 누군가에게는 지름길이 되길 바랍니다.
