@@ -583,10 +583,6 @@ main {
   margin: 0 0 16px;
 }
 
-.featured-list {
-  margin-bottom: 48px;
-}
-
 /* 오래된 글 안내 */
 .outdated-notice {
   margin-bottom: 2rem;
