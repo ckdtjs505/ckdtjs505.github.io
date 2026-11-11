@@ -6,7 +6,6 @@ tags: [회고, 일하는방식, AI]
 comments: true
 share: true
 related: false
-draft: true
 summary: '발표 두려움의 원인은 말솜씨가 아니라 모든 걸 중요하게 만든 압박이었다. 실패한 장면을 미리 느껴 두면 중요성이 빠지고 말이 나온다는 걸 알게 된 개발자의 고찰과 앞으로의 방향.'
 ---
 
