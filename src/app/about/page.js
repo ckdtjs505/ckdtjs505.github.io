@@ -31,7 +31,7 @@ const aiMuseum = [
   {
     no: '003',
     emoji: '🧰',
-    title: '개발자 업무 자동화 대시보드',
+    title: '업무 자동화 대시보드',
     year: 2026,
     medium: 'Claude Code, Chrome Extension, 로컬 서버',
     description: '반복 머지, 호스트 확인, 탭 정리처럼 매일 겪는 불편을 남는 오후마다 하나씩 자동화해 한 화면에 모았습니다.',
@@ -164,105 +164,44 @@ export default function About() {
         </div>
       </div>
 
-      <div className="portfolio-section">
-        <div className="museum">
-          <div className="museum-entrance">
-            <p className="museum-eyebrow">Sonia AI Museum · 상설전시</p>
-            <h2 className="museum-title">생각나면 만든 것들</h2>
-            <p className="museum-statement">
-              코드는 AI가 짰습니다. 무엇을 만들지 정하고, 맞게 동작하는지 끝까지 확인한 건 저입니다.
-              만드는 손이 AI인 시대에 남는 건 아이디어와 검증이라고 믿고, 그렇게 만든 것들을 여기 모읍니다.
-            </p>
-            <dl className="museum-meta">
-              <div><dt>개관</dt><dd>2026.11.11</dd></div>
-              <div><dt>소장품</dt><dd>{aiMuseum.length}점</dd></div>
-              <div><dt>입장료</dt><dd>무료</dd></div>
-            </dl>
-          </div>
-
-          <ol className="museum-hall">
-            {aiMuseum.map(work => (
-              <li className="museum-exhibit" key={work.no}>
-                <div className="museum-frame" aria-hidden="true">
-                  <span className="museum-artwork">{work.emoji}</span>
-                </div>
-                <div className="museum-label">
-                  <p className="museum-no">No. {work.no}</p>
-                  <h3 className="museum-work-title">{work.title}</h3>
-                  <p className="museum-artist">AI와 오창선, {work.year}</p>
-                  <p className="museum-medium">{work.medium}</p>
-                  <p className="museum-desc">{work.description}</p>
-                  <a href={work.postLink} className="museum-link">제작기 보기 →</a>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <h2 className="museum-archive-title">수장고 · AI 이전, 손으로 만든 것들</h2>
-
-        {mobileAppProjects.length > 0 && (
-          <>
-            <h2 style={{ marginBottom: '1.5rem', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border)' }}>Mobile App Project</h2>
-            <div className="project-grid">
-              {mobileAppProjects.map(project => (
-                <div className="post-card" key={project.id}>
-                  <h3 className="post-title" style={{ marginBottom: '0.5rem' }}>{project.title}</h3>
-                  <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.95rem' }}>{project.description}</p>
-                  <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    {project.githubLink && (
-                      <a href={project.githubLink} target="_blank" rel="noreferrer" className="tag" style={{ textDecoration: 'none' }}>GitHub</a>
-                    )}
-                    {project.viewLink && (
-                      <a href={project.viewLink} target="_blank" rel="noreferrer" className="tag" style={{ textDecoration: 'none' }}>View</a>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </>
-        )}
-
-        {fullStackProjects.length > 0 && (
-          <>
-            <h2 style={{ marginBottom: '1.5rem', marginTop: mobileAppProjects.length > 0 ? '3rem' : '0', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border)' }}>Full Stack Project</h2>
-            <div className="project-grid">
-              {fullStackProjects.map(project => (
-                <div className="post-card" key={project.id}>
-                  <h3 className="post-title" style={{ marginBottom: '0.5rem' }}>{project.title}</h3>
-                  <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.95rem' }}>{project.description}</p>
-                  <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    {project.githubLink && (
-                      <a href={project.githubLink} target="_blank" rel="noreferrer" className="tag" style={{ textDecoration: 'none' }}>GitHub</a>
-                    )}
-                    {project.viewLink && (
-                      <a href={project.viewLink} target="_blank" rel="noreferrer" className="tag" style={{ textDecoration: 'none' }}>View</a>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </>
-        )}
-
-        <h2 style={{ marginBottom: '1.5rem', marginTop: (mobileAppProjects.length > 0 || fullStackProjects.length > 0) ? '3rem' : '0', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border)' }}>Frontend Project</h2>
-        <div className="project-grid">
-          {frontEndProjects.map(project => (
-            <div className="post-card" key={project.id}>
-              <h3 className="post-title" style={{ marginBottom: '0.5rem' }}>{project.title}</h3>
-              <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.95rem' }}>{project.description}</p>
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
-                {project.githubLink && (
-                  <a href={project.githubLink} target="_blank" rel="noreferrer" className="tag" style={{ textDecoration: 'none' }}>GitHub</a>
-                )}
-                {project.viewLink && (
-                  <a href={project.viewLink} target="_blank" rel="noreferrer" className="tag" style={{ textDecoration: 'none' }}>View</a>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <Bookshelf
+        title="AI와 만든 것"
+        note="코드는 AI가 짰고, 무엇을 만들지 정하고 끝까지 확인한 건 제가 했습니다."
+        books={aiMuseum.map(w => ({ key: w.no, emoji: w.emoji, title: w.title, href: w.postLink, description: w.description }))}
+      />
+      <Bookshelf
+        title="손으로 만든 것"
+        books={[...mobileAppProjects, ...fullStackProjects, ...frontEndProjects].map(p => {
+          const [emoji, ...rest] = p.title.split(' ')
+          return { key: p.id, emoji, title: rest.join(' '), href: p.viewLink || p.githubLink, description: p.description, external: true }
+        })}
+      />
     </section>
+  )
+}
+
+// 책 한 권 = 프로젝트 하나. 책등에 제목을 세로로 쓰고, 설명은 툴팁과 스크린 리더용 이름으로 둔다.
+function Bookshelf({ title, note, books }) {
+  return (
+    <div className="bookshelf-section">
+      <h2 className="bookshelf-title">{title}</h2>
+      {note && <p className="bookshelf-note">{note}</p>}
+      <ul className="bookshelf">
+        {books.map(book => (
+          <li key={book.key} className="book-slot">
+            <a
+              href={book.href}
+              className="book"
+              title={book.description}
+              aria-label={`${book.title}: ${book.description}`}
+              {...(book.external && { target: '_blank', rel: 'noreferrer' })}
+            >
+              <span className="book-emoji" aria-hidden="true">{book.emoji}</span>
+              <span className="book-spine-title">{book.title}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }

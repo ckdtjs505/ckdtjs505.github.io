@@ -736,213 +736,100 @@ main {
   }
 }
 
-/* About · AI 박물관: 어두운 전시실에 조명 받은 액자 + 미술관 작품 라벨(번호·제목·작가·연도·재료) */
-.museum {
-  --museum-gold: #d4b483;
-  --museum-wall: #11151b;
-  --museum-serif: 'Noto Serif KR', 'Nanum Myeongjo', AppleMyungjo, 'Batang', serif;
-  margin-bottom: 4rem;
+/* About · 책장: 프로젝트 하나를 책 한 권으로. 줄마다 선반이 생기도록 칸 높이를 고정하고 배경으로 선반을 깐다 */
+.bookshelf-section {
+  margin-bottom: 3.5rem;
 }
 
-.museum-entrance {
-  text-align: center;
-  padding: 56px 24px 48px;
-  border-top: 1px solid var(--museum-gold);
-  border-bottom: 1px solid var(--card-border);
+.bookshelf-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.4rem;
 }
 
-.museum-eyebrow {
-  color: var(--museum-gold);
-  font-size: 0.8rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-
-.museum-title {
-  font-family: var(--museum-serif);
-  font-size: 2.4rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  margin-bottom: 20px;
-}
-
-.museum-statement {
-  max-width: 34em;
-  margin: 0 auto 28px;
+.bookshelf-note {
   color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
   word-break: keep-all;
 }
 
-.museum-meta {
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-  font-size: 0.85rem;
-}
-
-.museum-meta dt {
-  color: var(--text-secondary);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-}
-
-.museum-meta dd {
-  font-variant-numeric: tabular-nums;
-}
-
-.museum-hall {
+.bookshelf {
+  --slot: 250px;
+  --plank: 16px;
   list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: 72px;
-  padding: 64px 0 0;
-}
-
-.museum-exhibit {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 40px;
-  align-items: center;
-}
-
-/* 짝수 작품은 좌우를 바꿔 전시실을 걷는 리듬을 만든다 */
-.museum-exhibit:nth-child(even) {
-  grid-template-columns: 1fr 280px;
-}
-
-.museum-exhibit:nth-child(even) .museum-frame {
-  order: 2;
-}
-
-.museum-frame {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  display: grid;
-  place-items: center;
-  padding: 18px;
-  background: #2a2118;
-  border: 1px solid rgba(212, 180, 131, 0.35);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55), inset 0 0 0 6px #1b150f;
-}
-
-/* 매트(액자 안쪽 여백)와 위에서 떨어지는 조명 */
-.museum-frame::before {
-  content: '';
-  position: absolute;
-  inset: 18px;
+  flex-wrap: wrap;
+  column-gap: 6px;
+  row-gap: var(--plank);
+  padding: 20px 16px 0;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(255, 236, 200, 0.22), transparent 70%),
-    var(--museum-wall);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+    repeating-linear-gradient(to bottom,
+      transparent 0 var(--slot),
+      #7a5a3a var(--slot) calc(var(--slot) + 3px),
+      #5a3f27 calc(var(--slot) + 3px) calc(var(--slot) + var(--plank))),
+    #15110d;
+  background-position: 0 20px;
+  border: 10px solid #4a3320;
+  border-bottom-width: var(--plank);
+  border-radius: 4px;
+  box-shadow: inset 0 12px 24px rgba(0, 0, 0, 0.6);
 }
 
-.museum-artwork {
-  position: relative;
-  font-size: 5.5rem;
-  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.6));
-  transition: transform 0.4s ease;
+.book-slot {
+  height: var(--slot);
+  display: flex;
+  align-items: flex-end;
 }
 
-.museum-exhibit:hover .museum-artwork {
-  transform: scale(1.06);
+.book {
+  --book: #8b2e2e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 52px;
+  height: 220px;
+  padding: 12px 0;
+  border-radius: 3px 3px 1px 1px;
+  background:
+    linear-gradient(to right, rgba(0, 0, 0, 0.35), transparent 18%, rgba(255, 255, 255, 0.12) 50%, transparent 82%, rgba(0, 0, 0, 0.35)),
+    var(--book);
+  color: #f5ecdc;
+  box-shadow: inset 0 6px 0 rgba(255, 255, 255, 0.08), inset 0 -8px 0 rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
 }
 
-.museum-label {
-  border-left: 2px solid var(--museum-gold);
-  padding-left: 24px;
+.book:hover,
+.book:focus-visible {
+  transform: translateY(-12px);
+  color: #fff;
 }
 
-.museum-no {
-  color: var(--museum-gold);
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  font-variant-numeric: tabular-nums;
-  margin-bottom: 8px;
+/* 색과 키를 섞어 같은 책이 줄지어 있지 않게 */
+.book-slot:nth-child(5n+2) .book { --book: #2e4a6b; height: 236px; width: 48px; }
+.book-slot:nth-child(5n+3) .book { --book: #3d5c3a; height: 204px; width: 56px; }
+.book-slot:nth-child(5n+4) .book { --book: #b08a3e; height: 228px; width: 50px; }
+.book-slot:nth-child(5n+5) .book { --book: #5b3a6b; height: 212px; }
+
+.book-emoji {
+  font-size: 1.15rem;
 }
 
-.museum-work-title {
-  font-family: var(--museum-serif);
-  font-size: 1.5rem;
-  margin-bottom: 6px;
-}
-
-.museum-artist {
-  font-family: var(--museum-serif);
-}
-
-.museum-medium {
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-  margin-bottom: 14px;
-}
-
-.museum-desc {
-  color: var(--text-secondary);
-  word-break: keep-all;
-  margin-bottom: 16px;
-}
-
-.museum-link {
-  color: var(--museum-gold);
-  font-size: 0.9rem;
-  border-bottom: 1px solid transparent;
-}
-
-.museum-link:hover {
-  border-bottom-color: var(--museum-gold);
-}
-
-.museum-archive-title {
+.book-spine-title {
+  writing-mode: vertical-rl;
   font-family: 'Noto Serif KR', 'Nanum Myeongjo', AppleMyungjo, serif;
-  color: var(--text-secondary);
-  font-size: 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   letter-spacing: 0.05em;
-  padding-top: 24px;
-  border-top: 1px solid var(--card-border);
-  margin-bottom: 2rem;
-}
-
-@media (max-width: 600px) {
-  .museum-entrance {
-    padding: 40px 8px 36px;
-  }
-
-  .museum-title {
-    font-size: 1.8rem;
-  }
-
-  .museum-meta {
-    gap: 20px;
-  }
-
-  .museum-hall {
-    gap: 56px;
-    padding-top: 48px;
-  }
-
-  .museum-exhibit,
-  .museum-exhibit:nth-child(even) {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .museum-exhibit:nth-child(even) .museum-frame {
-    order: 0;
-  }
-
-  .museum-frame {
-    width: 72%;
-    margin: 0 auto;
-  }
-
-  .museum-artwork {
-    font-size: 4.5rem;
-  }
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-height: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .museum-artwork {
+  .book {
     transition: none;
   }
 }

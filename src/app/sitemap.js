@@ -4,7 +4,7 @@ import { SITE_URL, toDate, postUrl } from '../lib/site'
 export const dynamic = 'force-static'
 
 // /about을 고치면 이 날짜도 같이 바꿔 줌 (CI는 얕은 clone이라 git 이력으로 구할 수 없음)
-const ABOUT_UPDATED = '2026-11-01'
+const ABOUT_UPDATED = '2026-11-11'
 
 // lastmod는 날짜만 씀: 시간까지 쓰면 실제로 없는 '자정 UTC'를 꾸며 넣는 셈이라
 function toDay(date) {
