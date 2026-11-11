@@ -109,8 +109,8 @@ main {
   display: flex;
   align-items: center;
   gap: 24px;
-  margin-bottom: 48px;
-  padding: 32px;
+  margin-bottom: 36px;
+  padding: 28px 32px;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 16px;
@@ -137,11 +137,29 @@ main {
   line-height: 1.6;
 }
 
+/* 모바일에서 세로로 쌓으면 프로필만 325px라 첫 화면에 글이 2개뿐이어서 가로 배치 유지 */
 @media (max-width: 600px) {
   .profile-section {
-    flex-direction: column;
-    text-align: center;
-    padding: 24px;
+    gap: 16px;
+    padding: 16px;
+    margin-bottom: 28px;
+    align-items: flex-start;
+  }
+
+  .profile-img {
+    width: 56px;
+    height: 56px;
+    border-width: 2px;
+    flex-shrink: 0;
+  }
+
+  .profile-info h1 {
+    font-size: 1.25rem;
+    margin-bottom: 4px;
+  }
+
+  .profile-info p {
+    font-size: 0.9rem;
   }
 }
 
@@ -149,12 +167,12 @@ main {
 .post-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
 }
 
 .post-card {
   display: block;
-  padding: 24px;
+  padding: 20px 24px;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 12px;
@@ -185,8 +203,30 @@ main {
 }
 
 .post-title {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  line-height: 1.45;
   margin-bottom: 8px;
+}
+
+.post-excerpt {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0 0 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.post-card-date {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
 }
 
 .post-date {
@@ -420,6 +460,12 @@ main {
   font-weight: 600;
 }
 
+.toc-count {
+  color: var(--text-secondary);
+  font-weight: 400;
+  font-size: 0.85rem;
+}
+
 .toc ol {
   list-style: none;
   margin-top: 12px;
@@ -611,11 +657,26 @@ main {
   }
 
   .post-title {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
+    line-height: 1.4;
   }
 
   .post-card {
-    padding: 20px;
+    padding: 16px;
+  }
+
+  /* 모바일 폭에선 30자 안팎에서 잘려 정보가 거의 없음 */
+  .post-excerpt {
+    display: none;
+  }
+
+  .post-card .post-title {
+    margin-bottom: 10px;
+  }
+
+  .post-card .tag {
+    padding: 3px 10px;
+    font-size: 0.8rem;
   }
 
   .post-content {
