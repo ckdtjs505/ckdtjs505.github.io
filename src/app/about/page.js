@@ -25,46 +25,7 @@ const profileJsonLd = {
   mainEntity: { '@id': `${AUTHOR.url}#person` },
 }
 
-// AI가 코드를 짜고, 내가 "이걸 만들자"고 정하고 끝까지 확인한 것들. 새로 만들면 맨 위에 추가하고 no를 하나 올린다.
-// 캡션은 미술관 작품 라벨(작품 번호·제목·작가·연도·재료·설명) 형식을 따른다.
-const aiMuseum = [
-  {
-    no: '003',
-    emoji: '🧰',
-    title: '개발자 업무 자동화 대시보드',
-    year: 2026,
-    medium: 'Claude Code, Chrome Extension, 로컬 서버',
-    description: '반복 머지, 호스트 확인, 탭 정리처럼 매일 겪는 불편을 남는 오후마다 하나씩 자동화해 한 화면에 모았습니다.',
-    postLink: '/posts/dev-automation-dashboard'
-  },
-  {
-    no: '002',
-    emoji: '🧪',
-    title: 'Playwright 검수 자동화',
-    year: 2026,
-    medium: 'Claude Code, Playwright',
-    description: '손으로 6시간 걸리던 검수를 30분으로 줄였습니다. 첫 FAIL 11건은 AI가 만든 테스트가 틀린 것이었습니다.',
-    postLink: '/posts/ai-playwright-qa-automation'
-  },
-  {
-    no: '001',
-    emoji: '🔇',
-    title: '음소거 자동재생',
-    year: 2026,
-    medium: 'Claude Code, JavaScript',
-    description: '같은 기능을 저와 AI가 각각 짜서 겨뤘습니다. AI의 50줄이 부작용 없는 쪽이었고, 제 20줄이 졌습니다.',
-    postLink: '/posts/ai-coding-battle-muted-autoplay'
-  }
-];
-
 const fullStackProjects = [
-  {
-    id: 'hamonseong',
-    title: '📖 hamonseong',
-    description: '사랑과은헤교회 청소년부 성경읽기 프로젝트입니다.',
-    githubLink: 'https://github.com/ckdtjs505/hamonseong',
-    viewLink: 'https://hamonseong.com/'
-  },
   {
     id: 'nwitter',
     title: '🎃 nwitter',
@@ -76,17 +37,32 @@ const fullStackProjects = [
     id: 'afreecatv',
     title: '📺 afreecaTV',
     description: '아프리카TV 클론 코딩 프로젝트입니다.',
-    githubLink: 'https://github.com/ckdtjs505/csfreecaTV'
-  },
-  {
-    id: 'guess-mind',
-    title: '✏ guess-mind',
-    description: '캐치마인드 클론 코딩 프로젝트입니다.',
-    githubLink: 'https://github.com/ckdtjs505/guess-mind'
+    githubLink: 'https://github.com/ckdtjs505/csfreecaTV',
+    viewLink: 'https://csfreecatv.onrender.com/'
   }
 ];
 
-const mobileAppProjects = [
+// AI 도움을 받아 만든 것. 공개된 사이트나 repo가 있는 것만 건다.
+const aiAppProjects = [
+  {
+    id: 'sonia-wiki',
+    title: '🔎 Sonia Wiki',
+    description: '이 블로그 글 44개에 질문하면 근거 문단과 함께 답하는 RAG 위키입니다. (FastAPI · ChromaDB · Gemini)',
+    githubLink: 'https://github.com/ckdtjs505/sonia-wiki'
+  },
+  {
+    id: 'kakao-agent-starter',
+    title: '💬 카카오톡 AI 에이전트 스타터',
+    description: '카카오톡 챗봇에 Gemini 에이전트를 붙이는 스킬 서버 스타터입니다. 콜백으로 5초 응답 제한을 넘깁니다.',
+    githubLink: 'https://github.com/ckdtjs505/kakao-agent-starter'
+  },
+  {
+    id: 'hamonseong',
+    title: '📖 hamonseong',
+    description: '사랑과은헤교회 청소년부 성경읽기 프로젝트입니다.',
+    githubLink: 'https://github.com/ckdtjs505/hamonseong',
+    viewLink: 'https://hamonseong.com/'
+  },
   {
     id: 'self-fire',
     title: '🔥 Self-Fire (명언 앱)',
@@ -167,20 +143,22 @@ export default function About() {
       <PosterWall
         title="AI와 만든 것"
         note="코드는 AI가 짰고, 무엇을 만들지 정하고 끝까지 확인한 건 제가 했습니다."
-        books={aiMuseum.map(w => ({ key: w.no, emoji: w.emoji, title: w.title, href: w.postLink, description: w.description }))}
+        books={aiAppProjects.map(toBook)}
       />
       <PosterWall
         title="손으로 만든 것"
-        books={[...mobileAppProjects, ...fullStackProjects, ...frontEndProjects].map(p => {
-          const [emoji, ...rest] = p.title.split(' ')
-          return { key: p.id, emoji, title: rest.join(' '), href: p.viewLink || p.githubLink, description: p.description, external: true }
-        })}
+        books={[...fullStackProjects, ...frontEndProjects].map(toBook)}
       />
     </section>
   )
 }
 
-// 포스터 한 장 = 프로젝트 하나. 설명까지 포스터에 넣어 모바일에서도 눌러 보기 전에 읽힌다.
+function toBook(p) {
+  const [, ...rest] = p.title.split(' ')
+  return { key: p.id, image: `/assets/img/projects/${p.id}.jpg`, title: rest.join(' '), href: p.viewLink || p.githubLink, github: p.githubLink, description: p.description }
+}
+
+// 카드 한 장 = 프로젝트 하나. 스크린샷 + 제목 + 설명 + GitHub 버튼.
 function PosterWall({ title, note, books }) {
   return (
     <div className="poster-section">
@@ -188,16 +166,22 @@ function PosterWall({ title, note, books }) {
       {note && <p className="poster-note">{note}</p>}
       <ul className="poster-wall">
         {books.map(book => (
-          <li key={book.key}>
+          <li key={book.key} className="poster">
             <a
               href={book.href}
-              className="poster"
-              {...(book.external && { target: '_blank', rel: 'noreferrer' })}
+              className="poster-link"
+              target="_blank"
+              rel="noreferrer"
             >
-              <span className="poster-art" aria-hidden="true">{book.emoji}</span>
+              <img className="poster-art" src={book.image} alt="" loading="lazy" width={800} height={500} />
               <span className="poster-title">{book.title}</span>
               <span className="poster-desc">{book.description}</span>
             </a>
+            {book.github && (
+              <a href={book.github} className="poster-github" target="_blank" rel="noreferrer" aria-label={`${book.title} GitHub 소스`}>
+                GitHub 소스 →
+              </a>
+            )}
           </li>
         ))}
       </ul>

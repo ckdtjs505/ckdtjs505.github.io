@@ -18,9 +18,10 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const postData = await getPostData(params.slug)
+  const { slug } = await params
+  const postData = await getPostData(slug)
   const title = `${postData.title} | ${SITE_NAME}`
-  const url = postUrl(decodeURIComponent(params.slug))
+  const url = postUrl(decodeURIComponent(slug))
   const publishedTime = toDate(postData.date)?.toISOString()
 
   return {
@@ -41,7 +42,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Post({ params }) {
-  const postData = await getPostData(params.slug)
+  const { slug } = await params
+  const postData = await getPostData(slug)
   const { previous, next } = getAdjacentPosts(postData.id)
   const seriesPosts = getSeriesPosts(postData.series)
   const url = postUrl(postData.id)
