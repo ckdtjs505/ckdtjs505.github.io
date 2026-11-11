@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'AI 시대 개발자의 미래가 무서워졌다: 주간회의 1시간 30분이 전부 테스트 자동화 이야기였던 날'
-date: 2026-11-11
+date: 2026-11-11T16:38:00+09:00
 tags: [회고, AI, 일하는방식]
 comments: true
 share: true

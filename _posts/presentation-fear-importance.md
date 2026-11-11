@@ -1,7 +1,7 @@
 ---
 layout: post
 title: '발표만 하면 말이 막히는 이유: 연차가 쌓일수록 커진 "증명해야 한다"는 압박'
-date: 2026-11-11
+date: 2026-11-11T09:38:00+09:00
 tags: [회고, 일하는방식, AI]
 comments: true
 share: true
