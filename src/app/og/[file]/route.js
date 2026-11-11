@@ -20,8 +20,9 @@ export function generateStaticParams() {
   return [{ file: 'default.png' }, ...getSortedPostsData().map((post) => ({ file: `${post.id}.png` }))]
 }
 
-export function GET(request, { params }) {
-  const id = decodeURIComponent(params.file).replace(/\.png$/, '')
+export async function GET(request, { params }) {
+  const { file } = await params
+  const id = decodeURIComponent(file).replace(/\.png$/, '')
   const post = getSortedPostsData().find((p) => p.id === id)
   const tags = post?.tags ? (typeof post.tags === 'string' ? post.tags.split(' ') : post.tags).slice(0, 4) : []
 
