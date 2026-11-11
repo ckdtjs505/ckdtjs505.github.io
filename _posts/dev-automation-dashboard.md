@@ -1,7 +1,7 @@
 ---
 layout: post
 title: '개발자 업무 자동화 대시보드: 남는 오후마다 불편로그 하나씩 자동화해 한곳에 모은 기록'
-date: 2026-11-06
+date: 2026-11-06T15:54:00+09:00
 tags: [회고, Chrome Extension, Frontend, Gemini]
 comments: true
 share: true

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'AI와 코딩 대결에서 20줄짜리 내 코드가 진 이유: 음소거 자동재생과 localStorage 부작용'
-date: 2026-11-05
+date: 2026-11-05T16:24:00+09:00
 tags: [AI, 회고, 코드품질]
 comments: true
 share: true

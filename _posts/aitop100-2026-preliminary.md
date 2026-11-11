@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'AI_TOP_100 2026 온라인 예선 후기: 1시간 동안 Claude로 AI 에이전트를 만들며 배운 것'
-date: 2026-11-01
+date: 2026-11-01T19:11:00+09:00
 tags: ["회고", "AI"]
 comments: true
 share: true

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Claude Code 토큰 줄이려고 ponytail·graphify를 써봤다: 코드는 좋아졌는데 토큰은 체감이 없는 이유'
-date: 2026-11-06
+date: 2026-11-06T16:01:00+09:00
 tags: [AI, 회고]
 comments: true
 share: true
