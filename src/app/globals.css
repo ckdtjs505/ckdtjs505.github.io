@@ -735,3 +735,214 @@ main {
     scroll-behavior: auto;
   }
 }
+
+/* About · AI 박물관: 어두운 전시실에 조명 받은 액자 + 미술관 작품 라벨(번호·제목·작가·연도·재료) */
+.museum {
+  --museum-gold: #d4b483;
+  --museum-wall: #11151b;
+  --museum-serif: 'Noto Serif KR', 'Nanum Myeongjo', AppleMyungjo, 'Batang', serif;
+  margin-bottom: 4rem;
+}
+
+.museum-entrance {
+  text-align: center;
+  padding: 56px 24px 48px;
+  border-top: 1px solid var(--museum-gold);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.museum-eyebrow {
+  color: var(--museum-gold);
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.museum-title {
+  font-family: var(--museum-serif);
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+
+.museum-statement {
+  max-width: 34em;
+  margin: 0 auto 28px;
+  color: var(--text-secondary);
+  word-break: keep-all;
+}
+
+.museum-meta {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  font-size: 0.85rem;
+}
+
+.museum-meta dt {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.museum-meta dd {
+  font-variant-numeric: tabular-nums;
+}
+
+.museum-hall {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+  padding: 64px 0 0;
+}
+
+.museum-exhibit {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* 짝수 작품은 좌우를 바꿔 전시실을 걷는 리듬을 만든다 */
+.museum-exhibit:nth-child(even) {
+  grid-template-columns: 1fr 280px;
+}
+
+.museum-exhibit:nth-child(even) .museum-frame {
+  order: 2;
+}
+
+.museum-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: #2a2118;
+  border: 1px solid rgba(212, 180, 131, 0.35);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55), inset 0 0 0 6px #1b150f;
+}
+
+/* 매트(액자 안쪽 여백)와 위에서 떨어지는 조명 */
+.museum-frame::before {
+  content: '';
+  position: absolute;
+  inset: 18px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 236, 200, 0.22), transparent 70%),
+    var(--museum-wall);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.museum-artwork {
+  position: relative;
+  font-size: 5.5rem;
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.6));
+  transition: transform 0.4s ease;
+}
+
+.museum-exhibit:hover .museum-artwork {
+  transform: scale(1.06);
+}
+
+.museum-label {
+  border-left: 2px solid var(--museum-gold);
+  padding-left: 24px;
+}
+
+.museum-no {
+  color: var(--museum-gold);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 8px;
+}
+
+.museum-work-title {
+  font-family: var(--museum-serif);
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+}
+
+.museum-artist {
+  font-family: var(--museum-serif);
+}
+
+.museum-medium {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+}
+
+.museum-desc {
+  color: var(--text-secondary);
+  word-break: keep-all;
+  margin-bottom: 16px;
+}
+
+.museum-link {
+  color: var(--museum-gold);
+  font-size: 0.9rem;
+  border-bottom: 1px solid transparent;
+}
+
+.museum-link:hover {
+  border-bottom-color: var(--museum-gold);
+}
+
+.museum-archive-title {
+  font-family: 'Noto Serif KR', 'Nanum Myeongjo', AppleMyungjo, serif;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  padding-top: 24px;
+  border-top: 1px solid var(--card-border);
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 600px) {
+  .museum-entrance {
+    padding: 40px 8px 36px;
+  }
+
+  .museum-title {
+    font-size: 1.8rem;
+  }
+
+  .museum-meta {
+    gap: 20px;
+  }
+
+  .museum-hall {
+    gap: 56px;
+    padding-top: 48px;
+  }
+
+  .museum-exhibit,
+  .museum-exhibit:nth-child(even) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .museum-exhibit:nth-child(even) .museum-frame {
+    order: 0;
+  }
+
+  .museum-frame {
+    width: 72%;
+    margin: 0 auto;
+  }
+
+  .museum-artwork {
+    font-size: 4.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .museum-artwork {
+    transition: none;
+  }
+}

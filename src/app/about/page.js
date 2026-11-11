@@ -1,7 +1,7 @@
 import JsonLd from '../../components/JsonLd'
 import { SITE_NAME, AUTHOR } from '../../lib/site'
 
-const description = 'AI를 활용해 문제를 풀고, 2020년부터 라이브 스트리밍 웹 플레이어를 만들어 온 개발자 오창선(Changsun Oh)의 소개와 프로젝트입니다.'
+const description = 'AI가 코드를 짜고 개발자 오창선(Changsun Oh)이 기획하고 검증한 프로그램을 모은 AI 박물관입니다. 2020년부터 라이브 스트리밍 웹 플레이어를 만들어 온 개발자 소개도 함께 있습니다.'
 
 export const metadata = {
   title: `About | ${SITE_NAME}`,
@@ -25,24 +25,34 @@ const profileJsonLd = {
   mainEntity: { '@id': `${AUTHOR.url}#person` },
 }
 
-// AI가 코드를 짜고, 내가 "이걸 만들자"고 정하고 끝까지 확인한 것들. 새로 만들면 맨 위에 추가한다.
+// AI가 코드를 짜고, 내가 "이걸 만들자"고 정하고 끝까지 확인한 것들. 새로 만들면 맨 위에 추가하고 no를 하나 올린다.
+// 캡션은 미술관 작품 라벨(작품 번호·제목·작가·연도·재료·설명) 형식을 따른다.
 const aiMuseum = [
   {
-    id: 'dev-automation-dashboard',
-    title: '🧰 개발자 업무 자동화 대시보드',
-    description: '반복 머지, 호스트 확인, 탭 정리처럼 매일 겪는 불편을 하나씩 AI로 자동화해 한 화면에 모았습니다.',
+    no: '003',
+    emoji: '🧰',
+    title: '개발자 업무 자동화 대시보드',
+    year: 2026,
+    medium: 'Claude Code, Chrome Extension, 로컬 서버',
+    description: '반복 머지, 호스트 확인, 탭 정리처럼 매일 겪는 불편을 남는 오후마다 하나씩 자동화해 한 화면에 모았습니다.',
     postLink: '/posts/dev-automation-dashboard'
   },
   {
-    id: 'ai-playwright-qa-automation',
-    title: '🧪 Playwright 검수 자동화',
-    description: '손으로 6시간 걸리던 검수를 AI가 짠 Playwright 자동화로 30분으로 줄였습니다.',
+    no: '002',
+    emoji: '🧪',
+    title: 'Playwright 검수 자동화',
+    year: 2026,
+    medium: 'Claude Code, Playwright',
+    description: '손으로 6시간 걸리던 검수를 30분으로 줄였습니다. 첫 FAIL 11건은 AI가 만든 테스트가 틀린 것이었습니다.',
     postLink: '/posts/ai-playwright-qa-automation'
   },
   {
-    id: 'ai-coding-battle-muted-autoplay',
-    title: '🔇 음소거 자동재생',
-    description: '같은 기능을 저와 AI가 각각 짜서 겨뤘고, AI의 50줄이 제 20줄을 이겼습니다.',
+    no: '001',
+    emoji: '🔇',
+    title: '음소거 자동재생',
+    year: 2026,
+    medium: 'Claude Code, JavaScript',
+    description: '같은 기능을 저와 AI가 각각 짜서 겨뤘습니다. AI의 50줄이 부작용 없는 쪽이었고, 제 20줄이 졌습니다.',
     postLink: '/posts/ai-coding-battle-muted-autoplay'
   }
 ];
@@ -155,21 +165,41 @@ export default function About() {
       </div>
 
       <div className="portfolio-section">
-        <h2 style={{ marginBottom: '0.5rem', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border)' }}>🏛 AI 박물관</h2>
-        <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
-          코드는 AI가 짰고, 무엇을 만들지 정하고 끝까지 확인한 건 저입니다. 생각나면 바로 만든 것들을 여기 모읍니다.
-        </p>
-        <div className="project-grid">
-          {aiMuseum.map(project => (
-            <div className="post-card" key={project.id}>
-              <h3 className="post-title" style={{ marginBottom: '0.5rem' }}>{project.title}</h3>
-              <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.95rem' }}>{project.description}</p>
-              <a href={project.postLink} className="tag" style={{ textDecoration: 'none' }}>제작기</a>
-            </div>
-          ))}
+        <div className="museum">
+          <div className="museum-entrance">
+            <p className="museum-eyebrow">Sonia AI Museum · 상설전시</p>
+            <h2 className="museum-title">생각나면 만든 것들</h2>
+            <p className="museum-statement">
+              코드는 AI가 짰습니다. 무엇을 만들지 정하고, 맞게 동작하는지 끝까지 확인한 건 저입니다.
+              만드는 손이 AI인 시대에 남는 건 아이디어와 검증이라고 믿고, 그렇게 만든 것들을 여기 모읍니다.
+            </p>
+            <dl className="museum-meta">
+              <div><dt>개관</dt><dd>2026.11.11</dd></div>
+              <div><dt>소장품</dt><dd>{aiMuseum.length}점</dd></div>
+              <div><dt>입장료</dt><dd>무료</dd></div>
+            </dl>
+          </div>
+
+          <ol className="museum-hall">
+            {aiMuseum.map(work => (
+              <li className="museum-exhibit" key={work.no}>
+                <div className="museum-frame" aria-hidden="true">
+                  <span className="museum-artwork">{work.emoji}</span>
+                </div>
+                <div className="museum-label">
+                  <p className="museum-no">No. {work.no}</p>
+                  <h3 className="museum-work-title">{work.title}</h3>
+                  <p className="museum-artist">AI와 오창선, {work.year}</p>
+                  <p className="museum-medium">{work.medium}</p>
+                  <p className="museum-desc">{work.description}</p>
+                  <a href={work.postLink} className="museum-link">제작기 보기 →</a>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
 
-        <h2 style={{ marginTop: '4rem', marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>AI 이전, 손으로 만든 것들</h2>
+        <h2 className="museum-archive-title">수장고 · AI 이전, 손으로 만든 것들</h2>
 
         {mobileAppProjects.length > 0 && (
           <>
