@@ -1,4 +1,3 @@
-import { Gowun_Batang } from 'next/font/google'
 import JsonLd from '../../components/JsonLd'
 import { SITE_NAME, AUTHOR } from '../../lib/site'
 
@@ -19,9 +18,6 @@ export const metadata = {
   },
 }
 
-// 책등 글씨용. 한글은 Google이 unicode-range로 쪼개 보내서 실제 쓴 글자 묶음만 받는다
-const bookFont = Gowun_Batang({ weight: '700', preload: false, variable: '--font-book' })
-
 const profileJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
@@ -35,7 +31,7 @@ const aiMuseum = [
   {
     no: '003',
     emoji: '🧰',
-    title: '업무 자동화 대시보드',
+    title: '개발자 업무 자동화 대시보드',
     year: 2026,
     medium: 'Claude Code, Chrome Extension, 로컬 서버',
     description: '반복 머지, 호스트 확인, 탭 정리처럼 매일 겪는 불편을 남는 오후마다 하나씩 자동화해 한 화면에 모았습니다.',
@@ -147,7 +143,7 @@ const frontEndProjects = [
 
 export default function About() {
   return (
-    <section className={bookFont.variable}>
+    <section>
       <JsonLd data={profileJsonLd} />
       <div className="profile-section" style={{ marginBottom: '4rem' }}>
         <img src="/assets/img/avatar.jpg" alt="Sonia의 프로필 이미지" className="profile-img" width={100} height={100} />
@@ -168,12 +164,12 @@ export default function About() {
         </div>
       </div>
 
-      <Bookshelf
+      <PosterWall
         title="AI와 만든 것"
         note="코드는 AI가 짰고, 무엇을 만들지 정하고 끝까지 확인한 건 제가 했습니다."
         books={aiMuseum.map(w => ({ key: w.no, emoji: w.emoji, title: w.title, href: w.postLink, description: w.description }))}
       />
-      <Bookshelf
+      <PosterWall
         title="손으로 만든 것"
         books={[...mobileAppProjects, ...fullStackProjects, ...frontEndProjects].map(p => {
           const [emoji, ...rest] = p.title.split(' ')
@@ -184,24 +180,23 @@ export default function About() {
   )
 }
 
-// 책 한 권 = 프로젝트 하나. 책등에 제목을 세로로 쓰고, 설명은 툴팁과 스크린 리더용 이름으로 둔다.
-function Bookshelf({ title, note, books }) {
+// 포스터 한 장 = 프로젝트 하나. 설명까지 포스터에 넣어 모바일에서도 눌러 보기 전에 읽힌다.
+function PosterWall({ title, note, books }) {
   return (
-    <div className="bookshelf-section">
-      <h2 className="bookshelf-title">{title}</h2>
-      {note && <p className="bookshelf-note">{note}</p>}
-      <ul className="bookshelf">
+    <div className="poster-section">
+      <h2 className="poster-section-title">{title}</h2>
+      {note && <p className="poster-note">{note}</p>}
+      <ul className="poster-wall">
         {books.map(book => (
-          <li key={book.key} className="book-slot">
+          <li key={book.key}>
             <a
               href={book.href}
-              className="book"
-              title={book.description}
-              aria-label={`${book.title}: ${book.description}`}
+              className="poster"
               {...(book.external && { target: '_blank', rel: 'noreferrer' })}
             >
-              <span className="book-emoji" aria-hidden="true">{book.emoji}</span>
-              <span className="book-spine-title">{book.title}</span>
+              <span className="poster-art" aria-hidden="true">{book.emoji}</span>
+              <span className="poster-title">{book.title}</span>
+              <span className="poster-desc">{book.description}</span>
             </a>
           </li>
         ))}
