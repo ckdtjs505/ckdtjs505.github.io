@@ -754,7 +754,7 @@ main {
 }
 
 .bookshelf {
-  --slot: 250px;
+  --slot: 270px;
   --plank: 16px;
   list-style: none;
   display: flex;
@@ -788,7 +788,7 @@ main {
   align-items: center;
   gap: 10px;
   width: 52px;
-  height: 220px;
+  height: 244px;
   padding: 12px 0;
   border-radius: 3px 3px 1px 1px;
   background:
@@ -806,10 +806,10 @@ main {
 }
 
 /* 색과 키를 섞어 같은 책이 줄지어 있지 않게 */
-.book-slot:nth-child(5n+2) .book { --book: #2e4a6b; height: 236px; width: 48px; }
-.book-slot:nth-child(5n+3) .book { --book: #3d5c3a; height: 204px; width: 56px; }
-.book-slot:nth-child(5n+4) .book { --book: #b08a3e; height: 228px; width: 50px; }
-.book-slot:nth-child(5n+5) .book { --book: #5b3a6b; height: 212px; }
+.book-slot:nth-child(5n+2) .book { --book: #2e4a6b; height: 258px; width: 48px; }
+.book-slot:nth-child(5n+3) .book { --book: #3d5c3a; height: 228px; width: 56px; }
+.book-slot:nth-child(5n+4) .book { --book: #b08a3e; height: 252px; width: 50px; }
+.book-slot:nth-child(5n+5) .book { --book: #5b3a6b; height: 236px; }
 
 .book-emoji {
   font-size: 1.15rem;
@@ -817,10 +817,11 @@ main {
 
 .book-spine-title {
   writing-mode: vertical-rl;
-  font-family: 'Noto Serif KR', 'Nanum Myeongjo', AppleMyungjo, serif;
+  font-family: var(--font-book), serif;
   font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

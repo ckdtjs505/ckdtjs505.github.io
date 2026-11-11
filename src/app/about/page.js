@@ -1,3 +1,4 @@
+import { Gowun_Batang } from 'next/font/google'
 import JsonLd from '../../components/JsonLd'
 import { SITE_NAME, AUTHOR } from '../../lib/site'
 
@@ -17,6 +18,9 @@ export const metadata = {
     images: ['/assets/img/avatar.jpg'],
   },
 }
+
+// 책등 글씨용. 한글은 Google이 unicode-range로 쪼개 보내서 실제 쓴 글자 묶음만 받는다
+const bookFont = Gowun_Batang({ weight: '700', preload: false, variable: '--font-book' })
 
 const profileJsonLd = {
   '@context': 'https://schema.org',
@@ -143,7 +147,7 @@ const frontEndProjects = [
 
 export default function About() {
   return (
-    <section>
+    <section className={bookFont.variable}>
       <JsonLd data={profileJsonLd} />
       <div className="profile-section" style={{ marginBottom: '4rem' }}>
         <img src="/assets/img/avatar.jpg" alt="Sonia의 프로필 이미지" className="profile-img" width={100} height={100} />
