@@ -25,6 +25,28 @@ const profileJsonLd = {
   mainEntity: { '@id': `${AUTHOR.url}#person` },
 }
 
+// AI가 코드를 짜고, 내가 "이걸 만들자"고 정하고 끝까지 확인한 것들. 새로 만들면 맨 위에 추가한다.
+const aiMuseum = [
+  {
+    id: 'dev-automation-dashboard',
+    title: '🧰 개발자 업무 자동화 대시보드',
+    description: '반복 머지, 호스트 확인, 탭 정리처럼 매일 겪는 불편을 하나씩 AI로 자동화해 한 화면에 모았습니다.',
+    postLink: '/posts/dev-automation-dashboard'
+  },
+  {
+    id: 'ai-playwright-qa-automation',
+    title: '🧪 Playwright 검수 자동화',
+    description: '손으로 6시간 걸리던 검수를 AI가 짠 Playwright 자동화로 30분으로 줄였습니다.',
+    postLink: '/posts/ai-playwright-qa-automation'
+  },
+  {
+    id: 'ai-coding-battle-muted-autoplay',
+    title: '🔇 음소거 자동재생',
+    description: '같은 기능을 저와 AI가 각각 짜서 겨뤘고, AI의 50줄이 제 20줄을 이겼습니다.',
+    postLink: '/posts/ai-coding-battle-muted-autoplay'
+  }
+];
+
 const fullStackProjects = [
   {
     id: 'hamonseong',
@@ -133,6 +155,22 @@ export default function About() {
       </div>
 
       <div className="portfolio-section">
+        <h2 style={{ marginBottom: '0.5rem', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border)' }}>🏛 AI 박물관</h2>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
+          코드는 AI가 짰고, 무엇을 만들지 정하고 끝까지 확인한 건 저입니다. 생각나면 바로 만든 것들을 여기 모읍니다.
+        </p>
+        <div className="project-grid">
+          {aiMuseum.map(project => (
+            <div className="post-card" key={project.id}>
+              <h3 className="post-title" style={{ marginBottom: '0.5rem' }}>{project.title}</h3>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.95rem' }}>{project.description}</p>
+              <a href={project.postLink} className="tag" style={{ textDecoration: 'none' }}>제작기</a>
+            </div>
+          ))}
+        </div>
+
+        <h2 style={{ marginTop: '4rem', marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>AI 이전, 손으로 만든 것들</h2>
+
         {mobileAppProjects.length > 0 && (
           <>
             <h2 style={{ marginBottom: '1.5rem', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border)' }}>Mobile App Project</h2>
