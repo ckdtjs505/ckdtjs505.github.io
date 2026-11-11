@@ -164,32 +164,28 @@ main {
 }
 
 /* Post Cards */
+/* 글 49개가 모두 같은 무게의 박스면 눈이 머물 곳이 없어서, 구분선만 있는 목록으로 둠 */
 .post-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  border-top: 1px solid var(--card-border);
 }
 
 .post-card {
   display: block;
-  padding: 20px 24px;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--card-border);
   position: relative;
-}
-
-.post-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent-color);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .post-card-link {
   color: inherit;
   text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.post-card:hover .post-card-link {
+  color: var(--accent-hover);
 }
 
 .post-card-link::after {
@@ -259,6 +255,32 @@ main {
   color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(88, 166, 255, 0.3);
+}
+
+/* 목록에선 태그가 제목과 시선을 다투지 않게 회색 글자로만 표시 */
+.post-card .post-tags {
+  gap: 4px 10px;
+}
+
+.post-card .tag {
+  background: none;
+  color: var(--text-secondary);
+  padding: 2px 0;
+  border-radius: 0;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.post-card .tag::before {
+  content: '#';
+  opacity: 0.6;
+}
+
+.post-card .tag:hover {
+  background: none;
+  color: var(--accent-color);
+  transform: none;
+  box-shadow: none;
 }
 
 /* Markdown Content */
@@ -662,7 +684,7 @@ main {
   }
 
   .post-card {
-    padding: 16px;
+    padding: 18px 0;
   }
 
   /* 모바일 폭에선 30자 안팎에서 잘려 정보가 거의 없음 */
@@ -671,11 +693,13 @@ main {
   }
 
   .post-card .post-title {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
+  /* 회색 글자 태그는 작아서 손가락 터치 영역만 위아래로 넓힘 */
   .post-card .tag {
-    padding: 3px 10px;
+    padding: 6px 0;
+    margin: -6px 0;
     font-size: 0.8rem;
   }
 
