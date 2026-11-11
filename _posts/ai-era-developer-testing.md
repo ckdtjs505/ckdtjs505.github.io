@@ -6,7 +6,6 @@ tags: [회고, AI, 일하는방식]
 comments: true
 share: true
 related: false
-draft: true
 summary: 'AI가 코드를 100% 짜는 지금, 주간회의 1시간 30분 동안 개발 이야기는 없고 테스트 자동화와 품질 검증 이야기만 오갔다. 개발보다 테스트가 중요해진 AI 시대에 개발자의 미래가 무서워진 이유와, 생각나면 바로 만들기로 한 내 답을 정리했다.'
 ---
 
