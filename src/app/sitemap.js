@@ -1,4 +1,4 @@
-import { getSortedPostsData } from '../lib/posts'
+import { getSortedPostsData, getTagCounts, getPostsByTag } from '../lib/posts'
 import { SITE_URL, toDate, postUrl } from '../lib/site'
 
 export const dynamic = 'force-static'
@@ -27,5 +27,13 @@ export default function sitemap() {
       url: postUrl(post.id),
       lastModified: postModified(post),
     })),
+    { url: `${SITE_URL}/tags`, lastModified: latest },
+    // 태그 페이지 noindex 기준(글 2개 미만)과 같게: 색인되는 태그만 넣음
+    ...getTagCounts()
+      .filter(({ count }) => count >= 2)
+      .map(({ tag }) => ({
+        url: `${SITE_URL}/tags/${encodeURIComponent(tag)}`,
+        lastModified: getPostsByTag(tag).map(postModified).filter(Boolean).sort().at(-1),
+      })),
   ]
 }
