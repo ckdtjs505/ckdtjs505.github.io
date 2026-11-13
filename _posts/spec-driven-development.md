@@ -1,12 +1,11 @@
 ---
 layout: post
 title: '스펙 주도 개발(SDD)이 개발자의 다음 일이 될까: spec-kit으로 이틀간 기능 6개를 만들며 본 방향'
-date: 2026-11-13
+date: 2026-11-13T11:19:00+09:00
 tags: [AI, 회고, 일하는방식]
 comments: true
 share: true
 related: false
-draft: true
 summary: 스펙 주도 개발(SDD)에서는 코드를 짜는 능력보다 AI가 제안한 스펙을 이해하고 결정하는 안목이 중요해진다. spec-kit으로 이틀간 기능 6개를 만들며 느낀 점과 그 안목을 어떻게 기를지에 대한 고민을 정리했다.
 ---
 
