@@ -1,9 +1,11 @@
+import 'sonia-ui/themes.css'
 import './globals.css'
 import MermaidListener from './MermaidListener'
 import PageViews from './PageViews'
 import Link from 'next/link'
 import { Outfit } from 'next/font/google'
 import JsonLd from '../components/JsonLd'
+import ThemeSwitcher, { DEFAULT_THEME } from '../components/ThemeSwitcher'
 import { SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION, AUTHOR } from '../lib/site'
 
 export const metadata = {
@@ -65,8 +67,10 @@ const siteJsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ko" className={outfit.variable}>
+    <html lang="ko" className={outfit.variable} data-theme={DEFAULT_THEME} suppressHydrationWarning>
       <head>
+        {/* 그리기 전에 저장된 테마를 적용해 깜빡임을 막는다 */}
+        <script dangerouslySetInnerHTML={{ __html: `try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}` }} />
         {/* Pretendard는 한글 subset이 커서 CDN을 유지하되, CSS @import 대신 head에서 바로 받아 발견 시점을 앞당김 */}
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
@@ -78,7 +82,7 @@ export default function RootLayout({ children }) {
         <header>
           <div className="container header-content">
             <Link href="/" className="logo">Sonia.dev</Link>
-            <nav style={{display: 'flex', gap: '1.5rem'}}>
+            <nav className="header-nav">
               <Link href="/tags" style={{fontWeight: 500, color: 'var(--text-secondary)'}}>
                 Tags
               </Link>
@@ -88,6 +92,7 @@ export default function RootLayout({ children }) {
               <a href="https://github.com/ckdtjs505" target="_blank" rel="noopener noreferrer" style={{fontWeight: 500, color: 'var(--text-secondary)'}}>
                 GitHub
               </a>
+              <ThemeSwitcher />
             </nav>
           </div>
         </header>

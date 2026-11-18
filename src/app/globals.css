@@ -1,15 +1,26 @@
+/* 색은 sonia-ui 테마(--color-*)에서 온다. 테마는 <html data-theme>로 바뀐다 (기본 sonia) */
 :root {
-  --bg-color: #0d1117;
-  --text-primary: #e6edf3;
-  --text-secondary: #8b949e;
-  --accent-color: #58a6ff;
-  --accent-hover: #79c0ff;
-  --card-bg: rgba(22, 27, 34, 0.7);
-  --card-border: rgba(48, 54, 61, 0.5);
-  
-  --glass-bg: rgba(13, 17, 23, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --bg-color: var(--color-background);
+  --text-primary: var(--color-foreground);
+  --text-secondary: var(--color-muted);
+  --accent-color: var(--color-primary);
+  --accent-hover: color-mix(in srgb, var(--color-primary) 80%, var(--color-foreground));
+  --card-bg: color-mix(in srgb, var(--color-surface) 70%, transparent);
+  --card-border: var(--color-border);
+
+  --glass-bg: color-mix(in srgb, var(--color-background) 70%, transparent);
+  --glass-border: color-mix(in srgb, var(--color-foreground) 10%, transparent);
   --glass-blur: 12px;
+}
+
+/* 강조색을 옅게 깐 색 (선택 영역, 태그, 시리즈 상자) */
+:root {
+  --accent-a06: color-mix(in srgb, var(--color-primary) 6%, transparent);
+  --accent-a10: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  --accent-a25: color-mix(in srgb, var(--color-primary) 25%, transparent);
+  --accent-a30: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  --accent-a35: color-mix(in srgb, var(--color-primary) 35%, transparent);
+  --accent-a40: color-mix(in srgb, var(--color-primary) 40%, transparent);
 }
 
 * {
@@ -28,7 +39,7 @@ html {
 }
 
 ::selection {
-  background: rgba(88, 166, 255, 0.35);
+  background: var(--accent-a35);
 }
 
 :focus-visible {
@@ -240,7 +251,7 @@ main {
 }
 
 .tag {
-  background: rgba(88, 166, 255, 0.1);
+  background: var(--accent-a10);
   color: var(--accent-color);
   padding: 6px 12px;
   border-radius: 20px;
@@ -252,9 +263,9 @@ main {
 
 .tag:hover {
   background: var(--accent-color);
-  color: #fff;
+  color: var(--color-on-primary);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(88, 166, 255, 0.3);
+  box-shadow: 0 4px 12px var(--accent-a30);
 }
 
 /* 목록에선 태그가 제목과 시선을 다투지 않게 회색 글자로만 표시 */
@@ -302,7 +313,7 @@ main {
 .post-content a {
   color: var(--accent-color);
   text-decoration: underline;
-  text-decoration-color: rgba(88, 166, 255, 0.4);
+  text-decoration-color: var(--accent-a40);
   text-underline-offset: 3px;
 }
 
@@ -313,7 +324,7 @@ main {
 
 .post-content strong {
   font-weight: 700;
-  color: #f0f6fc;
+  color: var(--text-primary);
 }
 
 .post-content h4 {
@@ -338,7 +349,9 @@ main {
 }
 
 .post-content pre {
+  /* 코드 블록은 하이라이트 테마(atom-one-dark)에 맞춰 어떤 테마에서도 어둡게 둔다 */
   background: #161b22;
+  color: #e6edf3;
   padding: 16px;
   border-radius: 8px;
   overflow-x: auto;
@@ -357,7 +370,7 @@ main {
 }
 
 .post-content p code, .post-content li code {
-  background: rgba(110, 118, 129, 0.3);
+  background: var(--color-surface-muted);
   padding: 2px 6px;
   border-radius: 4px;
 }
@@ -413,6 +426,7 @@ main {
 
 /* Mermaid 다이어그램 */
 .mermaid-container {
+  /* Mermaid는 dark 테마로 그리므로 밝은 테마에서도 어두운 판 위에 둔다 */
   background: rgba(22, 27, 34, 0.8);
   border: 1px solid var(--card-border);
   border-radius: 12px;
@@ -514,8 +528,8 @@ main {
 .series-nav {
   margin-bottom: 2rem;
   padding: 16px 20px;
-  border: 1px solid rgba(88, 166, 255, 0.25);
-  background: rgba(88, 166, 255, 0.06);
+  border: 1px solid var(--accent-a25);
+  background: var(--accent-a06);
   border-radius: 12px;
 }
 
@@ -655,10 +669,10 @@ main {
 .outdated-notice {
   margin-bottom: 2rem;
   padding: 12px 16px;
-  border: 1px solid rgba(210, 153, 34, 0.4);
-  background: rgba(210, 153, 34, 0.08);
+  border: 1px solid color-mix(in srgb, var(--color-flame) 40%, transparent);
+  background: color-mix(in srgb, var(--color-flame) 8%, transparent);
   border-radius: 12px;
-  color: #e3b341;
+  color: var(--color-flame);
   font-size: 0.95rem;
 }
 
@@ -843,5 +857,46 @@ main {
 @media (prefers-reduced-motion: reduce) {
   .poster {
     transition: none;
+  }
+}
+
+/* 테마 선택 (헤더) */
+.theme-select {
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.theme-select:hover {
+  color: var(--text-primary);
+}
+
+.header-nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* 좁은 폰에서는 간격을 줄이고, 그래도 넘치면 메뉴를 다음 줄로 */
+@media (max-width: 480px) {
+  .header-content {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .header-nav {
+    gap: 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  .theme-select {
+    padding: 3px 6px;
+    font-size: 0.8rem;
   }
 }

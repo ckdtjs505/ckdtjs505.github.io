@@ -3,6 +3,10 @@
 import { useEffect, useRef } from 'react'
 import { GISCUS } from '../lib/site'
 
+// 지금 테마가 어두운지(color-scheme)에 맞춰 giscus 테마를 고른다
+const giscusTheme = () =>
+  getComputedStyle(document.documentElement).colorScheme === 'light' ? 'light' : 'dark_dimmed'
+
 export default function Comments() {
   const containerRef = useRef(null)
 
@@ -23,13 +27,20 @@ export default function Comments() {
       'data-strict': '1',
       'data-reactions-enabled': '1',
       'data-input-position': 'top',
-      'data-theme': 'dark_dimmed',
+      'data-theme': giscusTheme(),
       'data-lang': 'ko',
       'data-loading': 'lazy',
     }).forEach(([key, value]) => script.setAttribute(key, value))
 
     container.appendChild(script)
+
+    const onThemeChange = () => {
+      const frame = container.querySelector('iframe.giscus-frame')
+      frame?.contentWindow?.postMessage({ giscus: { setConfig: { theme: giscusTheme() } } }, 'https://giscus.app')
+    }
+    window.addEventListener('themechange', onThemeChange)
     return () => {
+      window.removeEventListener('themechange', onThemeChange)
       container.innerHTML = ''
     }
   }, [])
