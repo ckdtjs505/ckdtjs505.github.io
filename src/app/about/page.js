@@ -45,6 +45,13 @@ const fullStackProjects = [
 // AI 도움을 받아 만든 것. 공개된 사이트나 repo가 있는 것만 건다.
 const aiAppProjects = [
   {
+    id: 'sonia-ui',
+    title: '🎨 sonia-ui',
+    description: '제 모든 앱·웹이 함께 쓰는 디자인 시스템입니다. 테마 9종, Tailwind v4 · 순수 CSS · Expo를 지원하고 AI가 바로 읽는 llms-full.txt를 함께 둡니다.',
+    githubLink: 'https://github.com/ckdtjs505/sonia-ui',
+    viewLink: 'https://ckdtjs505.github.io/sonia-ui/'
+  },
+  {
     id: 'sonia-wiki',
     title: '🔎 Sonia Wiki',
     description: '이 블로그 글 44개에 질문하면 근거 문단과 함께 답하는 RAG 위키입니다. (FastAPI · ChromaDB · Gemini)',
