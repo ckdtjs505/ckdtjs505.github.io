@@ -1,12 +1,11 @@
 ---
 layout: post
 title: 'impeccable 스킬 후기: 디자인이 바뀔 줄 알았는데 버그를 잡고 있었다'
-date: 2026-11-18
+date: 2026-11-18T11:08:00+09:00
 tags: [AI, 회고, Frontend]
 comments: true
 share: true
 related: false
-draft: true
 summary: impeccable 스킬을 운영 중인 성경일독 사이트에 써 보니 디자인은 거의 그대로였고, 대신 읽음 기록이 조용히 실패하던 버그와 44px보다 작은 버튼 11개를 고쳤다. 기존 화면을 다듬는 명령만 골랐기 때문이고, 원하는 결과를 얻으려면 명령을 알고 골라야 한다.
 ---
 
