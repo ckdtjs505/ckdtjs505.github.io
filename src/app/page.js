@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import PostCard from '../components/PostCard'
+import YearJumpOpener from '../components/YearJumpOpener'
 import { getSortedPostsData, getTagCounts } from '../lib/posts'
 import { SITE_TITLE, getPostYear } from '../lib/site'
 
@@ -50,6 +51,7 @@ export default function Home() {
 
       <div className="section-header">
         <h2 className="section-title">전체 글</h2>
+        <YearJumpOpener />
         <nav aria-label="연도별 바로가기" className="year-jump-nav">
           {postsByYear.map(({ year }, idx) => (
             <span key={year} className="year-jump-item">
