@@ -36,6 +36,7 @@ html, body {
 
 html {
   scroll-padding-top: 96px;
+  scroll-behavior: smooth;
 }
 
 ::selection {
@@ -48,6 +49,34 @@ html {
   border-radius: 4px;
 }
 
+/* 키보드 탐색용 본문 바로가기: 포커스 전까지는 화면에서 숨김 */
+.skip-link {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 200;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link:focus {
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip-path: none;
+  padding: 10px 16px;
+  background: var(--bg-color);
+  color: var(--text-primary);
+  border: 2px solid var(--accent-color);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-primary);
@@ -55,6 +84,8 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -112,7 +143,49 @@ header nav a {
 }
 
 main {
-  padding-bottom: 60px;
+  flex: 1;
+  width: 100%;
+  padding-bottom: 48px;
+}
+
+main:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.site-footer {
+  border-top: 1px solid var(--glass-border);
+  padding: 28px 0 36px;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.footer-brand {
+  font-family: var(--font-outfit), sans-serif;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.footer-nav a {
+  color: var(--text-secondary);
+  padding: 6px 0;
+}
+
+.footer-nav a:hover {
+  color: var(--text-primary);
 }
 
 /* Profile Section */
@@ -135,6 +208,15 @@ main {
   object-fit: cover;
   border: 3px solid var(--accent-color);
   background-color: var(--bg-color);
+}
+
+.profile-eyebrow {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  line-height: 1.3;
+  margin-bottom: 4px;
 }
 
 .profile-info h1,
@@ -162,6 +244,11 @@ main {
     height: 56px;
     border-width: 2px;
     flex-shrink: 0;
+  }
+
+  .profile-eyebrow {
+    font-size: 0.8rem;
+    margin-bottom: 2px;
   }
 
   .profile-info h1 {
@@ -213,6 +300,7 @@ main {
   font-size: 1.3rem;
   line-height: 1.45;
   margin-bottom: 8px;
+  text-wrap: balance;
 }
 
 .post-excerpt {
@@ -409,6 +497,7 @@ main {
 .post-header h1 {
   font-size: 2.5rem;
   margin-bottom: 10px;
+  text-wrap: balance;
 }
 
 .back-link {
@@ -451,6 +540,7 @@ main {
   margin-top: 2.5rem;
   padding-bottom: 0.4rem;
   border-bottom: 1px solid var(--card-border);
+  text-wrap: balance;
 }
 
 .post-content h3 {
@@ -658,11 +748,94 @@ main {
   margin-left: 2px;
 }
 
-/* 홈 섹션 제목 */
+/* 홈 섹션 제목 · 주요 태그 · 연도별 목록 */
 .section-title {
   font-size: 1.1rem;
   color: var(--text-secondary);
-  margin: 0 0 16px;
+  margin: 0 0 12px;
+}
+
+.home-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.home-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.home-tag:hover {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.home-tags-all {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent-color);
+  padding: 5px 4px;
+  margin-left: 4px;
+}
+
+.home-tags-all:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.post-year-group + .post-year-group {
+  margin-top: 40px;
+}
+
+.post-year-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+}
+
+.post-year-count {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.list-end {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.back-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  margin-right: -12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  transition: color 0.2s ease;
+}
+
+.back-to-top:hover {
+  color: var(--accent-color);
 }
 
 /* 오래된 글 안내 */
@@ -734,6 +907,24 @@ main {
 
   .post-content pre code {
     font-size: 0.8125rem;
+  }
+
+  .home-tags {
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .home-tag {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+
+  .post-year-group + .post-year-group {
+    margin-top: 32px;
+  }
+
+  .site-footer {
+    padding: 24px 0 32px;
   }
 }
 

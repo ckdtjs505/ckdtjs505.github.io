@@ -46,3 +46,13 @@ export function formatDate(date) {
   const parsed = toDate(date);
   return parsed ? dateFormatter.format(parsed) : '';
 }
+
+const yearFormatter = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'Asia/Seoul',
+  year: 'numeric',
+});
+
+export function getPostYear(date) {
+  const parsed = toDate(date);
+  return parsed ? yearFormatter.format(parsed) : '기타';
+}

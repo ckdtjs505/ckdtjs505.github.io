@@ -75,7 +75,10 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
       </head>
-      <body>
+      <body id="top">
+        <a href="#main-content" className="skip-link">
+          본문으로 건너뛰기
+        </a>
         <JsonLd data={siteJsonLd} />
         <MermaidListener />
         <PageViews />
@@ -96,9 +99,22 @@ export default function RootLayout({ children }) {
             </nav>
           </div>
         </header>
-        <main className="container">
+        <main id="main-content" tabIndex={-1} className="container">
           {children}
         </main>
+        <footer className="site-footer">
+          <div className="container footer-content">
+            <span className="footer-brand">{SITE_NAME}</span>
+            <nav aria-label="사이트 하단 링크" className="footer-nav">
+              <a href="/feed.xml">RSS</a>
+              <a href="https://github.com/ckdtjs505" target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
+              <Link href="/tags">태그로 둘러보기</Link>
+              <Link href="/about">소개</Link>
+            </nav>
+          </div>
+        </footer>
       </body>
     </html>
   )
