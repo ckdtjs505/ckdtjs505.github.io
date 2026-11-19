@@ -5,7 +5,8 @@ import PageViews from './PageViews'
 import Link from 'next/link'
 import { Outfit } from 'next/font/google'
 import JsonLd from '../components/JsonLd'
-import ThemeSwitcher, { DEFAULT_THEME } from '../components/ThemeSwitcher'
+import HeaderNav from '../components/HeaderNav'
+import { DEFAULT_THEME } from '../components/ThemeSwitcher'
 import { SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION, AUTHOR } from '../lib/site'
 
 export const metadata = {
@@ -85,18 +86,7 @@ export default function RootLayout({ children }) {
         <header>
           <div className="container header-content">
             <Link href="/" className="logo">Sonia.dev</Link>
-            <nav className="header-nav">
-              <Link href="/tags" style={{fontWeight: 500, color: 'var(--text-secondary)'}}>
-                Tags
-              </Link>
-              <Link href="/about" style={{fontWeight: 500, color: 'var(--text-secondary)'}}>
-                About
-              </Link>
-              <a href="https://github.com/ckdtjs505" target="_blank" rel="noopener noreferrer" style={{fontWeight: 500, color: 'var(--text-secondary)'}}>
-                GitHub
-              </a>
-              <ThemeSwitcher />
-            </nav>
+            <HeaderNav />
           </div>
         </header>
         <main id="main-content" tabIndex={-1} className="container">
@@ -105,13 +95,13 @@ export default function RootLayout({ children }) {
         <footer className="site-footer">
           <div className="container footer-content">
             <span className="footer-brand">{SITE_NAME}</span>
-            <nav aria-label="사이트 하단 링크" className="footer-nav">
-              <a href="/feed.xml">RSS</a>
+            <nav aria-label="사이트 하단 메뉴" className="footer-nav">
+              <Link href="/tags">Tags</Link>
+              <Link href="/about">About</Link>
               <a href="https://github.com/ckdtjs505" target="_blank" rel="noopener noreferrer">
                 GitHub
               </a>
-              <Link href="/tags">태그로 둘러보기</Link>
-              <Link href="/about">소개</Link>
+              <a href="/feed.xml">RSS</a>
             </nav>
           </div>
         </footer>
