@@ -1,12 +1,11 @@
 ---
 layout: post
 title: '바이브 코딩 기술 부채는 어디에 쌓일까: 100% AI로 만든 플래너를 SvelteKit으로 이주하며 빠뜨린 것들'
-date: 2026-11-20
+date: 2026-11-20T16:18:00+09:00
 tags: [회고, AI, Architecture]
 comments: true
 share: true
 related: false
-draft: true
 summary: 바이브 코딩으로 만든 앱의 기술 부채는 이상한 구조보다 문서로 남지 않은 동작에 쌓여 있었다. 100% AI로 만든 개인 플래너를 SvelteKit으로 옮기며 구조는 깔끔해졌지만, 기존 동작 목록 없이 이주해 기능이 빠지고 속도도 느려졌다.
 ---
 
