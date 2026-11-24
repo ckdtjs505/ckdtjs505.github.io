@@ -1,12 +1,11 @@
 ---
 layout: post
 title: 'AI가 짠 코드가 이해되지 않을 때: 크롬 로그 지점(Logpoint)으로 값 하나 따라가기'
-date: 2026-11-24
+date: 2026-11-24T16:23:00+09:00
 tags: [AI, 회고, Frontend]
 comments: true
 share: true
 related: false
-draft: true
 summary: AI가 짠 코드가 설명을 들어도 이해되지 않을 때는 함수 대신 값 하나를 골라 크롬 DevTools 로그 지점(Logpoint)으로 실제 실행 순간의 값을 찍어 보면 풀린다. 배포 전날 음소거 자동재생 코드를 이렇게 따라가며 불필요한 코드까지 찾아 지웠다.
 ---
 
